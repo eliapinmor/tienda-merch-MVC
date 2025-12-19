@@ -15,3 +15,8 @@ CREATE TABLE products (
  product_name VARCHAR(150) NOT NULL,
  price TEXT NOT NULL
 );
+
+INSERT INTO products (product_name, price) VALUES
+('Camiseta', 20),
+('Gorra', 15),
+('Sudadera', 35);
