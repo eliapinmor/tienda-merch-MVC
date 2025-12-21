@@ -1,6 +1,6 @@
-CREATE DATABASE IF NOT EXISTS tienda;
+CREATE DATABASE IF NOT EXISTS tienda_db;
 
-USE tienda;
+USE tienda_db;
 
 
 CREATE TABLE users (
@@ -13,7 +13,7 @@ CREATE TABLE users (
 CREATE TABLE products (
  id INT AUTO_INCREMENT PRIMARY KEY,
  product_name VARCHAR(150) NOT NULL,
- price TEXT NOT NULL
+ price DECIMAL(10, 2) NOT NULL
 );
 
 INSERT INTO products (product_name, price) VALUES
