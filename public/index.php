@@ -26,6 +26,42 @@ if (preg_match('#^/product/(\d+)$#', $uri, $matches)) {
     exit;
 }
 
+//PROFILE
+if ($uri === '/profile') {
+    require_once __DIR__ . '/../controllers/AuthController.php';
+    session_start();
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: /login");
+        exit;
+    }
+    require __DIR__ . '/../views/user/profile.php';
+    exit;
+}
+
+//REGISTER
+if ($uri === '/register') {
+    require_once __DIR__ . '/../controllers/AuthController.php';
+    $controller = new AuthController();
+    $controller->register();
+    exit;
+}
+
+// LOGIN
+if ($uri === '/login') {
+    require_once __DIR__ . '/../controllers/AuthController.php';
+    $controller = new AuthController();
+    $controller->login();
+    exit;
+}
+
+// LOGOUT
+if ($uri === '/logout') {
+    require_once __DIR__ . '/../controllers/AuthController.php';
+    $controller = new AuthController();
+    $controller->logout();
+    exit;
+}
+
 // 404
 http_response_code(404);
 echo "Página no encontrada";

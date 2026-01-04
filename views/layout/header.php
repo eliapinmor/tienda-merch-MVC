@@ -20,6 +20,7 @@
 <nav>
     <a href="/">Home</a>
     <a href="/products">Productos</a>
+    <a href="/profile">Perfil</a>
 </nav>
 
 <hr>
