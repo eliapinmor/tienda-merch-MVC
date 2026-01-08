@@ -13,10 +13,23 @@ CREATE TABLE users (
 CREATE TABLE products (
  id INT AUTO_INCREMENT PRIMARY KEY,
  product_name VARCHAR(150) NOT NULL,
+ description TEXT,
  price DECIMAL(10, 2) NOT NULL
 );
 
-INSERT INTO products (product_name, price) VALUES
-('Camiseta', 20),
-('Gorra', 15),
-('Sudadera', 35);
+CREATE TABLE product_images (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT NOT NULL,
+    image_path VARCHAR(255) NOT NULL,
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+);
+
+INSERT INTO products (product_name, description, price) VALUES
+('CD First Album', 'Primer álbum de estudio', 20),
+('Gorra', 'Gorra de algodón', 15),
+('Sudadera', 'Sudadera con capucha', 35);
+
+INSERT INTO product_images (product_id, image_path) VALUES
+(1, 'images/cd_first_album.jpg'),
+(2, 'images/gorra.jpg'),
+(3, 'images/sudadera.jpg');
