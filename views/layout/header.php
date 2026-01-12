@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title><?= $title ?? 'Tienda MVC' ?></title>
+    <link href="/css/tailwind.css" rel="stylesheet">
     <style>
         nav {
             padding: 10px;

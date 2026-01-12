@@ -10,5 +10,8 @@
 <p>
     Usa el menú para navegar por los productos.
 </p>
+<h1 class="text-4xl font-bold text-blue-600">
+  Tailwind funciona 🎉
+</h1>
 
 <?php require __DIR__ . '/../layout/footer.php'; ?>
