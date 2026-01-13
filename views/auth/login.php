@@ -7,18 +7,26 @@ if (isset($_SESSION['user_id'])) {
 
 require __DIR__ . '/../layout/header.php';
 ?>
-<h2>Iniciar sesión</h2>
+<h1 class="text-4xl font-bold text-center text-gray-800 mb-10">Iniciar sesión</h1>
 
-<form method="POST" action="/login">
-    <label>Email</label>
-    <input type="email" name="email">
-
-    <label>Contraseña</label>
-    <input type="password" name="password">
-
-    <button type="submit">Entrar</button>
+<div
+  class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col w-96 p-6">
+  <form method="POST" action="/login">
+    <div>
+      <label>Email</label>
+      <input type="email" name="email">
+    </div>
+    <div>
+      <label>Contraseña</label>
+      <input type="password" name="password">
+    </div>
+    <div>
+      <button type="submit">Entrar</button>
+    </div>
 
     <p>no tienes cuenta? <a href="/register">Regístrate aquí</a></p>
-</form>
+  </form>
+</div>
 <?php require __DIR__ . '/../layout/footer.php'; ?>
-<?php if (isset($error)) echo "<p style='color:red'>$error</p>"; ?>
+<?php if (isset($error))
+  echo "<p style='color:red'>$error</p>"; ?>

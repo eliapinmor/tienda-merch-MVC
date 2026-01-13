@@ -1,6 +1,6 @@
 <hr>
 <footer>
-    <p>© <?= date('Y') ?> Tienda MVC</p>
+    <p>Elia Pineda Moreno | Tienda Merch MVC ©</p>
 </footer>
 
 </body>
