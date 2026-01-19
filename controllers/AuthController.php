@@ -9,10 +9,14 @@ class AuthController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            $username  = trim($_POST['username']);
+            $username = trim($_POST['username']);
             $email = trim($_POST['email']);
-            $pass  = $_POST['password'];
-
+            $pass = $_POST['password'];
+            if (!isset($_POST['role'])) {
+                $role = 'customer';
+            } else {
+                $role = $_POST['role'];
+            }
             if ($username === '' || $email === '' || $pass === '') {
                 $error = "Todos los campos son obligatorios";
                 require __DIR__ . '/../views/auth/register.php';
@@ -21,7 +25,7 @@ class AuthController
 
             $passwordHash = password_hash($pass, PASSWORD_BCRYPT);
 
-            User::create($username, $email, $passwordHash);
+            User::create($username, $email, $passwordHash, $role);
 
             header('Location: /login');
             exit;
@@ -36,7 +40,7 @@ class AuthController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $email = trim($_POST['email']);
-            $pass  = $_POST['password'];
+            $pass = $_POST['password'];
 
             $user = User::findByEmail($email);
 

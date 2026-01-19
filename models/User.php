@@ -2,13 +2,13 @@
 
 class User
 {
-    public static function create($username, $email, $password)
+    public static function create($username, $email, $password, $role)
     {
         $pdo = Database::connect();
         $stmt = $pdo->prepare(
-            "INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)"
+            "INSERT INTO users (username, email, password_hash, role) VALUES (?, ?, ?, ?)"
         );
-        return $stmt->execute([$username, $email, $password]);
+        return $stmt->execute([$username, $email, $password, $role]);
     }
     public static function findByEmail($email)
     {

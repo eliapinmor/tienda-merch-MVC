@@ -7,7 +7,8 @@ CREATE TABLE users (
  id INT AUTO_INCREMENT PRIMARY KEY,
  username VARCHAR(80) NOT NULL,
  email VARCHAR(120) NOT NULL UNIQUE,
- password_hash VARCHAR(255) NOT NULL
+ password_hash VARCHAR(255) NOT NULL,
+ role ENUM('admin', 'customer') DEFAULT 'customer' NOT NULL
 );
 
 CREATE TABLE products (
@@ -33,3 +34,6 @@ INSERT INTO product_images (product_id, image_path) VALUES
 (1, 'images/cd_first_album.jpg'),
 (2, 'images/gorra.jpg'),
 (3, 'images/sudadera.jpg');
+
+INSERT INTO users (username, email, password_hash, role) VALUES
+('admin', 'admin@gmail.com', '$2y$10$TvOGt/MzbtjddzUjw5g/.OsR0kQlc7ACiZw8TRHP6xOdCmILufcl2', 'admin');

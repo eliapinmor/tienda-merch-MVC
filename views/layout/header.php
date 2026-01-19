@@ -1,3 +1,8 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +26,9 @@
 <nav>
     <a href="/">Home</a>
     <a href="/products">Productos</a>
+<?php if (!empty($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
+        <a href="/admin">Panel de Administración</a>
+    <?php endif; ?>
     <a href="/profile">Perfil</a>
 </nav>
 
