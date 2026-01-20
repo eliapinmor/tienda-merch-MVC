@@ -74,6 +74,17 @@ if ($uri === '/admin') {
     exit;
 }
 
+if ($uri === '/admin/users') {
+    require_once __DIR__ . '/../controllers/AuthController.php';
+    session_start();
+    if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
+        header("Location: /login");
+        exit;
+    }
+    require __DIR__ . '/../views/admin/users.php';
+    exit;
+}
+
 // 404
 http_response_code(404);
 echo "Página no encontrada";

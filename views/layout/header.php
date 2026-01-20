@@ -5,6 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title><?= $title ?? 'Tienda MVC' ?></title>
@@ -14,6 +15,7 @@ if (session_status() === PHP_SESSION_NONE) {
             padding: 10px;
             background: #222;
         }
+
         nav a {
             color: white;
             margin-right: 15px;
@@ -21,15 +23,16 @@ if (session_status() === PHP_SESSION_NONE) {
         }
     </style>
 </head>
+
 <body>
 
-<nav>
-    <a href="/">Home</a>
-    <a href="/products">Productos</a>
-<?php if (!empty($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
-        <a href="/admin">Panel de Administración</a>
-    <?php endif; ?>
-    <a href="/profile">Perfil</a>
-</nav>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/products">Productos</a>
+        <?php if (!empty($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
+            <a href="/admin">Panel de Administración</a>
+        <?php endif; ?>
+        <a href="/profile">Perfil</a>
+    </nav>
 
-<hr>
+    <hr>
