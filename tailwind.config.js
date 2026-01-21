@@ -6,7 +6,11 @@ module.exports = {
     "./public/**/*.html",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        title: ['Freckle Face', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }

@@ -1,5 +1,5 @@
 <?php require __DIR__ . '/../layout/header.php'; ?>
-<div class="flex w-94 bg-red-500 justify-center p-4 m-auto flex-row gap-8">
+<div class="flex w-full max-w-6xl mx-auto bg-red-500 justify-center gap-40 p-4 m-auto flex-row">
     <div>
         <?php foreach ($images as $img): ?>
             <img src="/<?= $img['image_path'] ?>" width="220">
