@@ -2,6 +2,12 @@
 
 class User
 {
+    public static function getAll()
+    {
+        $pdo = Database::connect();
+        return $pdo->query("SELECT * FROM users")
+                   ->fetchAll(PDO::FETCH_ASSOC);
+    }
     public static function create($username, $email, $password, $role)
     {
         $pdo = Database::connect();
