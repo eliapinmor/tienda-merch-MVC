@@ -75,13 +75,15 @@ if ($uri === '/admin') {
 }
 
 if ($uri === '/admin/users') {
-    require_once __DIR__ . '/../controllers/UserController.php';
     session_start();
     if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
         header("Location: /login");
         exit;
     }
-    require __DIR__ . '/../views/admin/users.php';
+    // require __DIR__ . '/../views/admin/users.php';
+    require_once __DIR__ . '/../controllers/UserController.php';
+    $controller = new UserController();
+    $controller->showAllUsers();
     exit;
 }
 
