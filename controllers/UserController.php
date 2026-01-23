@@ -6,6 +6,6 @@ class UserController {
         // This method would typically retrieve all users from the database
         // and pass them to a view for rendering.
         $users = User::getAll(); // Assuming this method exists in User model
-        require __DIR__ . '/../views/admin/users.php';
+        require __DIR__ . '/../views/admin/users/index.php';
     }
 }
