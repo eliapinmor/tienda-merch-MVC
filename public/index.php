@@ -113,6 +113,20 @@ if ($uri === '/admin/users/delete' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
+if ($uri === '/admin/products') {
+    session_start();
+    if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
+        header("Location: /login");
+        exit;
+    }
+    // require_once __DIR__ . '/../controllers/ReviewController.php';
+    // $controller = new ReviewController();
+    // $controller->getAll();
+    require __DIR__ . '/../views/admin/products.php';
+    exit;
+}
+
+
 
 // 404
 http_response_code(404);

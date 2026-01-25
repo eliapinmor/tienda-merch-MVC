@@ -14,10 +14,13 @@ if (session_status() === PHP_SESSION_NONE) {
     <link href="https://fonts.googleapis.com/css2?family=Freckle+Face&display=swap" rel="stylesheet">
     <link href="/css/tailwind.css" rel="stylesheet">
 </head>
+<?php
+    $isHome = ($_SERVER['REQUEST_URI'] === '/' || $_SERVER['REQUEST_URI'] === '');
+?>
 
-<body>
+<body class="min-h-screen flex flex-col <?= $isHome ? '' : 'bg-gray-50' ?>" >
 
-    <nav class="flex flex-row justify-evenly items-center p-4 bg-black text-white">
+    <nav class="flex flex-row justify-evenly items-center p-4 bg-gray-900 text-white">
         <div>
             <a href="/products">PRODUCTOS</a>
         </div>
@@ -33,4 +36,4 @@ if (session_status() === PHP_SESSION_NONE) {
         </div>
     </nav>
 
-    <hr>
+    <main class="flex-1 w-full <?= $isHome ? '' : 'max-w-6xl mx-auto p-6' ?>">
