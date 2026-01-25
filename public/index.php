@@ -83,9 +83,36 @@ if ($uri === '/admin/users') {
     // require __DIR__ . '/../views/admin/users.php';
     require_once __DIR__ . '/../controllers/UserController.php';
     $controller = new UserController();
-    $controller->showAllUsers();
+    $controller->getAll();
     exit;
 }
+
+if ($uri === '/admin/users/saveUser' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    session_start();
+    if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
+        header("Location: /login");
+        exit;
+    }
+
+    require_once __DIR__ . '/../controllers/UserController.php';
+    $controller = new UserController();
+    $controller->saveUser();
+    exit;
+}
+
+if ($uri === '/admin/users/delete' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    session_start();
+    if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
+        header("Location: /login");
+        exit;
+    }
+
+    require_once __DIR__ . '/../controllers/UserController.php';
+    $controller = new UserController();
+    $controller->deleteUser();
+    exit;
+}
+
 
 // 404
 http_response_code(404);
