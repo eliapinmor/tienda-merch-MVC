@@ -27,7 +27,10 @@
          focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
                     </div>
                     <div>
-                        <button type="submit">Crear cuenta</button>
+                        <button type="submit" class="btn">Crear cuenta</button>
+                    </div>
+                    <div class="mt-8">
+                        <p>¿Ya tienes cuenta? <strong><a href="/login">Inicia sesión aquí</a></strong></p>
                     </div>
                 </form>
             </div>

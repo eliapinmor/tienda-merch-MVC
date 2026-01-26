@@ -22,18 +22,19 @@
       </div>
       <div>
         <label>Password:</label>
-        <input type="password" name="password" class="w-full rounded-lg bg-white px-4 py-2 text-gray-800
-         ring-1 ring-gray-300
-         focus:ring-2 focus:ring-blue-600 focus:outline-none" required>
+        <input type="password" name="password" class="input" required>
       </div>
       <div>
         <label>Role:</label>
-        <select name="role">
+        <select name="role" class="w-full rounded-lg bg-white px-4 py-2 text-gray-800
+               ring-1 ring-gray-300
+               focus:ring-2 focus:ring-blue-600 focus:outline-none
+               cursor-pointer">
           <option value="admin">Admin</option>
           <option value="customer">Customer</option>
         </select>
       </div>
-      <button type="submit">Save User</button>
+      <button type="submit" class="btn">Save User</button>
     </form>
   </div>
   <div>

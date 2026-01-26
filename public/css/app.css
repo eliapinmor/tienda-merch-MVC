@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .btn {
+    @apply mt-6 w-full rounded-lg bg-blue-600 px-4 py-2
+           text-white font-semibold
+           hover:bg-blue-700
+           active:scale-95
+           transition;
+  }
+
+  .input {
+    @apply w-full rounded-lg bg-white px-4 py-2 text-gray-800
+         ring-1 ring-gray-300
+         focus:ring-2 focus:ring-blue-600 focus:outline-none;
+  }
+
+  .btn-glass {
+    @apply bg-white/30 backdrop-blur-md border border-white/30 shadow-lg rounded-xl px-6 py-2 text-gray-900
+       hover:bg-white/40
+       transition
+  }
+
+}

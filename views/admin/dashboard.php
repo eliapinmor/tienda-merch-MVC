@@ -2,10 +2,7 @@
 <h1>Panel de Administración</h1>
 <p>Bienvenido al panel de administración.</p>
 <div class="flex justify-end">
-    <a href="/profile" class="bg-white/30 backdrop-blur-md border border-white/30 shadow-lg rounded-xl px-6 py-2 text-gray-900
-       hover:bg-white/40
-       transition
-       ">IR A PERFIL</a>
+    <a href="/profile" class="btn-glass">IR A PERFIL</a>
 </div>
 <div class="flex flex-row justify-center gap-8 mt-8 text-center">
     <a href="/admin/products"

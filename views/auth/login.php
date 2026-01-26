@@ -29,10 +29,12 @@ require __DIR__ . '/../layout/header.php';
             focus:ring-2 focus:ring-blue-500 focus:outline-none">
           </div>
           <div>
-            <button type="submit">Entrar</button>
+            <button type="submit" class="btn">Entrar</button>
           </div>
 
-          <p>no tienes cuenta? <a href="/register">Regístrate aquí</a></p>
+          <div class="mt-8">
+            <p>¿No tienes cuenta? <strong><a href="/register">Regístrate aquí</a></strong></p>
+          </div>
         </form>
       </div>
     </div>
