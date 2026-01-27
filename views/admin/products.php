@@ -1,10 +1,10 @@
 <?php $title = "Product Management"; ?>
 <?php require_once __DIR__ . '/../layout/header.php'; ?>
 <h1>PRODUCTOS</h1>
-<div class="flex">
+<div class="flex gap-8">
     <div class="w-1/3">
         <form method="POST" action="/admin/products/save" enctype="multipart/form-data">
-            <input type="hidden" name="id" value="">
+            <input type="hidden" name="id" value="<?= $editProduct['id'] ?? '' ?>">
             <div>
                 <label>Nombre:</label>
                 <input type="text" name="name" class="input" value="<?= htmlspecialchars($editProduct['product_name'] ?? '') ?>"
@@ -44,13 +44,13 @@
                         <td class="table-d"><?= htmlspecialchars($product['id']) ?></td>
                         <td class="table-d"><?= htmlspecialchars($product['product_name']) ?></td>
                         <td class="table-d"><?= htmlspecialchars($product['price']) ?></td>
-                        <td class="table-d"></td>
-                        <td class="space-x-2">
-                            <a href="/admin/products?edit=<?= $product['id'] ?>" class="text-blue-600">Editar</a>
+                        <td class="table-d"><?= htmlspecialchars($product['image_path'] ?? '') ?></td>
+                        <td class="table-d space-x-2">
+                            <a href="/admin/products?edit=<?= $product['id'] ?>" class="text-blue-600">✏️</a>
 
                             <form method="POST" action="/admin/products/delete" class="inline">
                                 <input type="hidden" name="id" value="<?= $product['id'] ?>">
-                                <button class="text-red-600">Eliminar</button>
+                                <button class="text-red-600">🗑️</button>
                             </form>
                         </td>
                     </tr>

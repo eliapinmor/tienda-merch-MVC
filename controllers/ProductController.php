@@ -36,7 +36,7 @@ class ProductController {
         $price = $_POST['price'];
 
         if ($_POST['id']) {
-            $productId = $_POST[id];
+            $productId = $_POST['id'];
             Product::update($_POST['id'], $name, $description, $price);
         } else {
             $productId = Product::create($name, $description, $price);

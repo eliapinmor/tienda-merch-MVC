@@ -9,16 +9,16 @@ class Product {
     //                ->fetchAll(PDO::FETCH_ASSOC);
     // }
 
-    // public static function getAllWithMainImage() {
-    //     $pdo = Database::connect();
+     public static function getAllWithMainImage() {
+         $pdo = Database::connect();
 
-    //     $sql = "SELECT p.*, pi.image_path
-    //         FROM products p
-    //         LEFT JOIN product_images pi
-    //         ON p.id = pi.product_id AND pi.is_main = 1";
+         $sql = "SELECT p.*, pi.image_path
+             FROM products p
+             LEFT JOIN product_images pi
+             ON p.id = pi.product_id AND pi.is_main = 1";
 
-    //     return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-    // }
+        return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    }
 
 public static function getAll()
 {
