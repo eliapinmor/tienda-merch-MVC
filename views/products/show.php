@@ -1,13 +1,8 @@
 <?php require __DIR__ . '/../layout/header.php'; ?>
-<div class="flex w-3/4 h-full max-w-6xl mx-auto bg-red-500 justify-center gap-8 p-4 m-auto flex-row">
-    <!-- <div>
-        <?php foreach ($images as $img): ?>
-            <img src="/<?= $img['image_path'] ?>" width="220">
-        <?php endforeach; ?>
-    </div> -->
+<div class="flex w-3/4 h-full min-h-96 max-w-6xl mx-auto justify-center gap-8 p-4 m-auto mt-8 flex-row">
     <!-- Carrusel -->
-    <div class="max-w-xl w-1/2 mx-auto mt-6">
-        <div class="relative w-1/2 overflow-hidden rounded-lg shadow-lg">
+    <div class="max-w-xl w-1/2 mx-auto flex justify-center items-center">
+        <div class="relative w-4/5 overflow-hidden rounded-lg shadow-xl shadow-black/30">
 
             <div id="carousel" class="flex transition-transform duration-500">
                 <?php foreach ($images as $img): ?>
@@ -28,10 +23,10 @@
     </div>
 
     <div class="w-1/2">
-        <h2><?= htmlspecialchars($product['product_name']) ?></h2>
-        <p><?= htmlspecialchars($product['description']) ?></p>
-        <p><strong><?= $product['price'] ?> €</strong></p>
-        <p>comprar</p>
+        <h2 class="text-4xl font-bold"><?= htmlspecialchars($product['product_name']) ?></h2>
+        <p class="font-semibold"><?= htmlspecialchars($product['description']) ?></p>
+        <p class="font-bold"><?= $product['price'] ?> €</p>
+        <button class="btn">comprar</button>
     </div>
 </div>
 

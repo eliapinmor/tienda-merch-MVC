@@ -10,6 +10,9 @@ module.exports = {
       fontFamily: {
         title: ['Freckle Face', 'sans-serif'],
       },
+      colors: {
+        primary: '#4fc28b'
+      }
     },
   },
   plugins: [],

@@ -75,11 +75,13 @@ class ProductController {
         $filename = uniqid('img_') . '.' . $extension;
 
         move_uploaded_file($tmpName, $basePath . $filename);
+        $isMain = ($index === 0) ? 1 : 0;
 
         // Guardar en BD
         ProductImage::create(
             $productId,
-            'uploads/products/' . $productId . '/' . $filename
+            'uploads/products/' . $productId . '/' . $filename,
+            $isMain
         );
     }
 }

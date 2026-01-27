@@ -12,13 +12,13 @@ class ProductImage {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public static function create($productId, $path)
+    public static function create($productId, $path, $isMain = 0)
 {
     $pdo = Database::connect();
     $stmt = $pdo->prepare(
-        "INSERT INTO product_images (product_id, image_path) VALUES (?, ?)"
+        "INSERT INTO product_images (product_id, image_path, is_main) VALUES (?, ?, ?)"
     );
-    return $stmt->execute([$productId, $path]);
+    return $stmt->execute([$productId, $path, $isMain]);
 }
 
 public static function findMainImage($productId)
