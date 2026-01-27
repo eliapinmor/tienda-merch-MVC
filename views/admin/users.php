@@ -2,7 +2,7 @@
 <?php require_once __DIR__ . '/../layout/header.php'; ?>
 <h1>Users</h1>
 <div class="flex">
-  <div>
+  <div class="w-1/3">
     <!-- formulario -->
     <form method="POST" action="/admin/users/saveUser">
       <input type="hidden" name="id" value="">
@@ -30,20 +30,35 @@
       <button type="submit" class="btn">Save User</button>
     </form>
   </div>
-  <div>
-    <!-- lista de usuarios -->
-    <?php foreach ($users as $user): ?>
-      <div>
-        <p><?= htmlspecialchars($user['username']) ?> (<?= htmlspecialchars($user['email']) ?>)</p>
-        <div class="space-x-2">
-          <a href="/admin/users?edit=<?= $user['id'] ?>" class="text-blue-600">Editar</a>
+  <div class="w-2/3">
+    <table>
+      <thead>
+        <tr>
+          <th class="table-h"> id </th>
+          <th class="table-h"> username </th>
+          <th class="table-h"> email </th>
+          <th class="table-h"> rol </th>
+          <th class="table-h"> acciones </th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach ($users as $user): ?>
+          <tr class="hover:bg-gray-50 transition-colors">
+            <td class="table-d"><?= htmlspecialchars($user['id']) ?></td>
+            <td class="table-d"><?= htmlspecialchars($user['username']) ?>
+            <td class="table-d"><?= htmlspecialchars($user['email']) ?></td>
+            <td class="table-d space-x-2">
+              <a href="/admin/users?edit=<?= $user['id'] ?>" class="text-blue-600">Editar</a>
 
-          <form method="POST" action="/admin/users/delete" class="inline">
-            <input type="hidden" name="id" value="<?= $user['id'] ?>">
-            <button class="text-red-600">Eliminar</button>
-          </form>
-        </div>
-      <?php endforeach; ?>
+              <form method="POST" action="/admin/users/delete" class="inline">
+                <input type="hidden" name="id" value="<?= $user['id'] ?>">
+                <button class="text-red-600">Eliminar</button>
+              </form>
+          </td>
+        </tr>
+          <?php endforeach; ?>
+      </tbody>
+    </table>
     </div>
   </div>
   <?php require_once __DIR__ . '/../layout/footer.php'; ?>

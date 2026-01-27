@@ -5,6 +5,27 @@
             <img src="/<?= $img['image_path'] ?>" width="220">
         <?php endforeach; ?>
     </div>
+    <!-- Carrusel -->
+     <!-- <div class="max-w-xl mx-auto mt-6">
+    <div class="relative w-full overflow-hidden rounded-lg shadow-lg">
+
+        <div id="carousel" class="flex transition-transform duration-500">
+            <?php foreach ($images as $img): ?>
+                <img src="/<?= htmlspecialchars($img['image_path']) ?>"
+                     class="w-full flex-shrink-0 object-cover h-64">
+            <?php endforeach; ?>
+        </div>
+
+
+        <button id="prev" class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white bg-opacity-70 hover:bg-opacity-100 rounded-full p-2 shadow">
+            &#8592;
+        </button>
+        <button id="next" class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white bg-opacity-70 hover:bg-opacity-100 rounded-full p-2 shadow">
+            &#8594;
+        </button>
+    </div>
+</div> -->
+
     <div>
         <h2><?= htmlspecialchars($product['product_name']) ?></h2>
         <p><?= htmlspecialchars($product['description']) ?></p>

@@ -6,7 +6,7 @@ require_once __DIR__ . '/../models/ProductImage.php';
 class ProductController {
     //tienda publica
     public function index() {
-        $products = Product::getAll();
+        $products = Product::getAllWithMainImage();
         require __DIR__ . '/../views/products/index.php';
     }
 

@@ -21,4 +21,16 @@ class ProductImage {
     return $stmt->execute([$productId, $path]);
 }
 
+public static function findMainImage($productId)
+    {
+        $pdo = Database::connect();
+        $stmt = $pdo->prepare(
+            "SELECT * FROM product_images
+             WHERE product_id = ? AND is_main = 1
+             LIMIT 1"
+        );
+        $stmt->execute([$productId]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
 }

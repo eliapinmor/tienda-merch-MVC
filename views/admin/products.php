@@ -2,7 +2,7 @@
 <?php require_once __DIR__ . '/../layout/header.php'; ?>
 <h1>PRODUCTOS</h1>
 <div class="flex">
-    <div>
+    <div class="w-1/3">
         <form method="POST" action="/admin/products/save" enctype="multipart/form-data">
             <input type="hidden" name="id" value="">
             <div>
@@ -27,20 +27,36 @@
             <button type="submit" class="btn">Save</button>
         </form>
     </div>
-    <div>
-        <?php foreach ($products as $product): ?>
-            <div>
-                <p><?= htmlspecialchars($product['product_name']) ?> - $<?= htmlspecialchars($product['price']) ?></p>
-                <div class="space-x-2">
-                    <a href="/admin/products?edit=<?= $product['id'] ?>" class="text-blue-600">Editar</a>
+    <div class="w-2/3">
+        <table>
+            <thead>
+                <tr>
+                <th class="table-h"> id </th>
+                <th class="table-h"> name </th>
+                <th class="table-h"> precio </th>
+                <th class="table-h"> imagenes </th>
+                <th class="table-h"> acciones </th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($products as $product): ?>
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="table-d"><?= htmlspecialchars($product['id']) ?></td>
+                        <td class="table-d"><?= htmlspecialchars($product['product_name']) ?></td>
+                        <td class="table-d"><?= htmlspecialchars($product['price']) ?></td>
+                        <td class="table-d"></td>
+                        <td class="space-x-2">
+                            <a href="/admin/products?edit=<?= $product['id'] ?>" class="text-blue-600">Editar</a>
 
-                    <form method="POST" action="/admin/products/delete" class="inline">
-                        <input type="hidden" name="id" value="<?= $product['id'] ?>">
-                        <button class="text-red-600">Eliminar</button>
-                    </form>
-                </div>
-            <?php endforeach; ?>
-        </div>
+                            <form method="POST" action="/admin/products/delete" class="inline">
+                                <input type="hidden" name="id" value="<?= $product['id'] ?>">
+                                <button class="text-red-600">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
     </div>
 </div>
 <?php require_once __DIR__ . '/../layout/footer.php'; ?>

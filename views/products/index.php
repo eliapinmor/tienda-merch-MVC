@@ -8,16 +8,15 @@
         <?php foreach ($products as $product): ?>
             <div class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col">
                 <a href="/product/<?= $product['id'] ?>" class="flex-1 flex flex-col">
-                    <!-- Imagen del producto -->
-                    <?php if (!empty($product['image_url'])): ?>
-                        <img src="<?= htmlspecialchars($product['image_url']) ?>" alt="<?= htmlspecialchars($product['product_name']) ?>" class="w-full h-48 object-cover">
+                    
+                    <?php if (!empty($product['image_path'])): ?>
+                        <img src="<?= htmlspecialchars($product['image_path']) ?>" alt="<?= htmlspecialchars($product['product_name']) ?>" class="w-full h-48 object-cover">
                     <?php else: ?>
                         <div class="w-full h-48 bg-gray-200 flex items-center justify-center text-gray-500">
                             <img src="/images/no-image.jpg" alt="No Image" class="w-24 h-24">
                         </div>
                     <?php endif; ?>
 
-                    <!-- Info del producto -->
                     <div class="p-4 flex-1 flex flex-col justify-between">
                         <h2 class="text-lg font-semibold text-gray-800 mb-2"><?= htmlspecialchars($product['product_name']) ?></h2>
                         <p class="text-blue-600 font-bold text-xl"><?= number_format($product['price'], 2) ?> €</p>
