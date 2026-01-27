@@ -1,4 +1,3 @@
-<script>
 const carousel = document.getElementById('carousel');
 const images = carousel.children;
 const total = images.length;
@@ -18,4 +17,3 @@ function updateCarousel() {
     const offset = -index * 100; // mover en porcentaje
     carousel.style.transform = `translateX(${offset}%)`;
 }
-</script>

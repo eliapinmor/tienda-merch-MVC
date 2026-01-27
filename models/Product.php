@@ -3,24 +3,38 @@
 require_once __DIR__ . '/../config/Database.php';
 
 class Product {
-    public static function getAll() {
-        $pdo = Database::connect();
-        return $pdo->query("SELECT * FROM products")
-                   ->fetchAll(PDO::FETCH_ASSOC);
-    }
+    // public static function getAll() {
+    //     $pdo = Database::connect();
+    //     return $pdo->query("SELECT * FROM products")
+    //                ->fetchAll(PDO::FETCH_ASSOC);
+    // }
 
-    public static function getAllWithMainImage() {
-        $pdo = Database::connect();
+    // public static function getAllWithMainImage() {
+    //     $pdo = Database::connect();
 
-        $sql = "SELECT p.*, pi.image_path
-            FROM products p
-            LEFT JOIN product_images pi
-            ON p.id = pi.product_id AND pi.is_main = 1";
+    //     $sql = "SELECT p.*, pi.image_path
+    //         FROM products p
+    //         LEFT JOIN product_images pi
+    //         ON p.id = pi.product_id AND pi.is_main = 1";
 
-        return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-    }
+    //     return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    // }
 
+public static function getAll()
+{
+    $pdo = Database::connect();
 
+    $sql = "
+        SELECT 
+            p.*,
+            MIN(pi.image_path) AS image_path
+        FROM products p
+        LEFT JOIN product_images pi ON pi.product_id = p.id
+        GROUP BY p.id
+    ";
+
+    return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+}
     public static function findById($id) {
         $pdo = Database::connect();
         $stmt = $pdo->prepare("SELECT * FROM products WHERE id = ?");

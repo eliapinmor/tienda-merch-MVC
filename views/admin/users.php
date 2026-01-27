@@ -18,7 +18,7 @@
       </div>
       <div>
         <label>Password:</label>
-        <input type="password" name="password" class="input" required>
+        <input type="password" name="password" class="input">
       </div>
       <div>
         <label>Role:</label>
@@ -34,11 +34,11 @@
     <table>
       <thead>
         <tr>
-          <th class="table-h"> id </th>
-          <th class="table-h"> username </th>
-          <th class="table-h"> email </th>
-          <th class="table-h"> rol </th>
-          <th class="table-h"> acciones </th>
+          <th class="table-h">id</th>
+          <th class="table-h">username</th>
+          <th class="table-h">email</th>
+          <th class="table-h">rol</th>
+          <th class="table-h">acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -47,6 +47,7 @@
             <td class="table-d"><?= htmlspecialchars($user['id']) ?></td>
             <td class="table-d"><?= htmlspecialchars($user['username']) ?>
             <td class="table-d"><?= htmlspecialchars($user['email']) ?></td>
+            <td class="table-d"><?= htmlspecialchars($user['role']) ?></td>
             <td class="table-d space-x-2">
               <a href="/admin/users?edit=<?= $user['id'] ?>" class="text-blue-600">Editar</a>
 
