@@ -7,7 +7,7 @@
             <input type="hidden" name="id" value="">
             <div>
                 <label>Nombre:</label>
-                <input type="text" name="name" class="input" value="<?= htmlspecialchars($editProduct['name'] ?? '') ?>"
+                <input type="text" name="name" class="input" value="<?= htmlspecialchars($editProduct['product_name'] ?? '') ?>"
                     required>
             </div>
             <div>

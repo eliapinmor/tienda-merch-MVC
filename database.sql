@@ -30,10 +30,12 @@ INSERT INTO products (product_name, description, price) VALUES
 ('Gorra', 'Gorra de algodón', 15),
 ('Sudadera', 'Sudadera con capucha', 35);
 
-INSERT INTO product_images (product_id, image_path) VALUES
-(1, 'images/cd_first_album.jpg'),
-(2, 'images/gorra.jpg'),
-(3, 'images/sudadera.jpg');
+-- INSERT INTO product_images (product_id, image_path) VALUES
+-- (1, 'images/cd_first_album.jpg'),
+-- (2, 'images/gorra.jpg'),
+-- (3, 'images/sudadera.jpg');
 
 INSERT INTO users (username, email, password_hash, role) VALUES
 ('admin', 'admin@gmail.com', '$2y$10$TvOGt/MzbtjddzUjw5g/.OsR0kQlc7ACiZw8TRHP6xOdCmILufcl2', 'admin');
+
+ALTER TABLE product_images ADD is_main TINYINT(1) DEFAULT 0;
