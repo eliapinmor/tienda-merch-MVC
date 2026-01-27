@@ -11,4 +11,14 @@ class ProductImage {
         $stmt->execute([$product_id]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public static function create($productId, $path)
+{
+    $pdo = Database::connect();
+    $stmt = $pdo->prepare(
+        "INSERT INTO product_images (product_id, image_path) VALUES (?, ?)"
+    );
+    return $stmt->execute([$productId, $path]);
+}
+
 }

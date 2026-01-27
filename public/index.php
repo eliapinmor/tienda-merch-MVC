@@ -119,10 +119,35 @@ if ($uri === '/admin/products') {
         header("Location: /login");
         exit;
     }
-    // require_once __DIR__ . '/../controllers/ReviewController.php';
-    // $controller = new ReviewController();
-    // $controller->getAll();
-    require __DIR__ . '/../views/admin/products.php';
+    require_once __DIR__ . '/../controllers/ProductController.php';
+    $controller = new ProductController();
+    $controller->getAll();
+    exit;
+}
+
+if ($uri === '/admin/products/save' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    session_start();
+    if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
+        header("Location: /login");
+        exit;
+    }
+
+    require_once __DIR__ . '/../controllers/ProductController.php';
+    $controller = new ProductController();
+    $controller->saveProduct();
+    exit;
+}
+
+if ($uri === '/admin/products/delete' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    session_start();
+    if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
+        header("Location: /login");
+        exit;
+    }
+
+    require_once __DIR__ . '/../controllers/ProductController.php';
+    $controller = new ProductController();
+    $controller->deleteProduct();
     exit;
 }
 

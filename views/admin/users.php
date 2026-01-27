@@ -8,16 +8,12 @@
       <input type="hidden" name="id" value="">
       <div>
         <label>Username:</label>
-        <input type="text" name="username" class="w-full rounded-lg bg-white px-4 py-2 text-gray-800
-         ring-1 ring-gray-300
-         focus:ring-2 focus:ring-blue-600 focus:outline-none" required
+        <input type="text" name="username" class="input" required
          value="<?= htmlspecialchars($editUser['username'] ?? '') ?>">
       </div>
       <div>
         <label>Email:</label>
-        <input type="email" name="email" class="w-full rounded-lg bg-white px-4 py-2 text-gray-800
-         ring-1 ring-gray-300
-         focus:ring-2 focus:ring-blue-600 focus:outline-none" required
+        <input type="email" name="email" class="input" required
          value="<?= htmlspecialchars($editUser['email'] ?? '') ?>">
       </div>
       <div>
@@ -26,10 +22,7 @@
       </div>
       <div>
         <label>Role:</label>
-        <select name="role" class="w-full rounded-lg bg-white px-4 py-2 text-gray-800
-               ring-1 ring-gray-300
-               focus:ring-2 focus:ring-blue-600 focus:outline-none
-               cursor-pointer">
+        <select name="role" class="input cursor-pointer">
           <option value="admin">Admin</option>
           <option value="customer">Customer</option>
         </select>

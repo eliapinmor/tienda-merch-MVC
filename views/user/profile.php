@@ -18,7 +18,9 @@ require __DIR__ . '/../layout/header.php';
 <div>
   <!-- profile page -->
   <!-- profile pic -->
-  <div></div>
+  <div>
+    
+  </div>
   <!-- profile data -->
   <div class="w-80 m-auto">
     <div>

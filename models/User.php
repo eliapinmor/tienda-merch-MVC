@@ -24,6 +24,14 @@ class User
         );
         return $stmt->execute([$username, $email, $password, $role, $id]);
     }
+    public static function updateWithoutPassword($id, $username, $email, $role)
+    {
+        $pdo = Database::connect();
+        $stmt = $pdo->prepare(
+            "UPDATE users SET username = ?, email = ?, role = ? WHERE id = ?"
+        );
+        return $stmt->execute([$username, $email, $role, $id]);
+    }
 
     public static function delete($id)
     {

@@ -23,13 +23,20 @@ class UserController
         $email = $_POST['email'];
         $password = $_POST['password'];
         $role = $_POST['role'];
-        $passwordHash = password_hash($password, PASSWORD_BCRYPT);
 
 
         // si el usuario existe tiene un id por tanto lo actualizamos, ne cambio si estamos pasando un usario sin id se trata de uno inexistente y lo creamos
         if ($_POST['id']) {
-            User::update($_POST['id'], $username, $email, $passwordHash, $role);
+            if (!empty($_POST['password'])){
+        $passwordHash = password_hash($password, PASSWORD_BCRYPT);
+
+            User::update($_POST['id'], $username, $email, $passwordHash, $role);}
+            else {
+                User::updateWithoutPassword($_POST['id'], $username, $email, $role);
+            }
         } else {
+        $passwordHash = password_hash($password, PASSWORD_BCRYPT);
+
             User::create($username, $email, $passwordHash, $role);
         }
         header('Location: /admin/users');
