@@ -6,9 +6,9 @@
   .btn {
     @apply mt-6 w-full rounded-lg bg-primary px-4 py-2
            text-white font-semibold
-           hover:bg-primary
+           /* hover:bg-primary
            active:scale-95
-           transition;
+           transition*/;
   }
 
   .input {
@@ -24,11 +24,23 @@
   }
 
   .table-h {
-    @apply px-6 py-3 text-left text-sm font-medium text-gray-700;
+     @apply px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider
+           text-gray-700 bg-gray-100;
   }
 
   .table-d {
     @apply px-4 py-4 break-words;
+  }
+
+  .table-row {
+    @apply odd:bg-white even:bg-gray-50 hover:bg-gray-100 transition;
+  }
+
+  .table-head{
+    @apply bg-gray-100 sticky top-0 z-10;
+  }
+  .title-page{
+    @apply bg-secondary text-center text-4xl uppercase font-bold w-1/2 px-6 py-4 rounded-lg m-auto mb-8 text-white;
   }
 
 }

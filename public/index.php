@@ -151,6 +151,15 @@ if ($uri === '/admin/products/delete' && $_SERVER['REQUEST_METHOD'] === 'POST') 
     exit;
 }
 
+if( $uri === '/admin/comments') {
+    session_start();
+    if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
+        header("Location: /login");
+        exit;
+    }
+    require __DIR__ . '/../views/admin/comments.php';
+    exit;
+}
 
 
 // 404

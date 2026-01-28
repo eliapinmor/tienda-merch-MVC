@@ -19,8 +19,10 @@ require __DIR__ . '/../layout/header.php';
   <!-- profile page -->
   <!-- profile pic -->
   <div>
-    
+    <img src="/images/profile.png" alt="Profile Picture" class="w-32 h-32 rounded-full mx-auto mb-4">
   </div>
+  <div>
+  <hr class="my-6 border-t-2 border-gray-300 w-96 m-auto"></div>
   <!-- profile data -->
   <div class="w-80 m-auto">
     <div>
