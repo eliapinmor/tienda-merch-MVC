@@ -24,9 +24,16 @@
 
     <div class="w-1/2">
         <h2 class="text-4xl font-bold"><?= htmlspecialchars($product['product_name']) ?></h2>
-        <p class="font-semibold"><?= htmlspecialchars($product['description']) ?></p>
-        <p class="font-bold"><?= $product['price'] ?> €</p>
-        <button class="btn">comprar</button>
+        <p class="font-semibold mt-8"><?= htmlspecialchars($product['description']) ?></p>
+        <div class="flex">
+            <div class="w-1/2"  >
+            <p class="font-bold w-1/2">
+                <?= $product['price'] ?> €
+            </p></div>
+            <div class="btn w-1/2">
+            <button>comprar</button></div>
+        </div>
+
     </div>
 </div>
 

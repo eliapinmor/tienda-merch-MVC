@@ -12,8 +12,8 @@
             </div>
             <div>
                 <label>Descripción:</label>
-                <input type="text" name="description" class="input"
-                    value="<?= htmlspecialchars($editProduct['description'] ?? '') ?>">
+                <textarea type="text" name="description" class="input max-h-64"
+                    value="<?= htmlspecialchars($editProduct['description'] ?? '') ?>"></textarea>
             </div>
             <div>
                 <label>Precio:</label>
