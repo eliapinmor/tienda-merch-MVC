@@ -66,7 +66,7 @@ class ProductController {
         }
 
         // VALIDACIONES
-        if ($files['size'][$index] > 2_000_000) continue; // 2MB máx
+        if ($files['size'][$index] > 5_000_000) continue; // 2MB máx
 
         $mime = mime_content_type($tmpName);
         if (!in_array($mime, ['image/jpeg', 'image/png', 'image/webp'])) continue;

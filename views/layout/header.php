@@ -36,4 +36,4 @@ if (session_status() === PHP_SESSION_NONE) {
         </div>
     </nav>
 
-    <main class="flex-1 w-full <?= $isHome ? '' : 'max-w-6xl mx-auto p-6' ?>">
+    <main class="flex-1 w-full <?= $isHome ? '' : 'max-w-7xl mx-auto p-6' ?>">

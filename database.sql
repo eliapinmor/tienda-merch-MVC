@@ -28,7 +28,7 @@ CREATE TABLE product_images (
 
 INSERT INTO products (product_name, description, price) VALUES
 ('CD First Album', 'Primer album de estudio de un artista emergente. Cuenta con 15 pistas. Formato MD de Sony.', 20),
-('Gorra', 'Gorra de la cantante americana Lana del Rey. De algodón, color negro.', 15),
+('Gorra', 'Gorra de la cantante americana Lana del Rey. De algodon, color negro.', 15),
 ('Sudadera', 'Sudadera negra con capucha de The Cranberries. Album: no need to argue ', 35);
 
 INSERT INTO product_images (product_id, image_path, is_main) VALUES

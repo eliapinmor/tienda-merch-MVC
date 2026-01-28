@@ -1,7 +1,7 @@
 <?php $title = "User Management"; ?>
 <?php require_once __DIR__ . '/../layout/header.php'; ?>
 <h1>Users</h1>
-<div class="flex">
+<div class="flex gap-8">
   <div class="w-1/3">
     <!-- formulario -->
     <form method="POST" action="/admin/users/saveUser">
@@ -49,11 +49,11 @@
             <td class="table-d"><?= htmlspecialchars($user['email']) ?></td>
             <td class="table-d"><?= htmlspecialchars($user['role']) ?></td>
             <td class="table-d space-x-2">
-              <a href="/admin/users?edit=<?= $user['id'] ?>" class="text-blue-600">Editar</a>
+              <a href="/admin/users?edit=<?= $user['id'] ?>" class="text-blue-600">✏️</a>
 
               <form method="POST" action="/admin/users/delete" class="inline">
                 <input type="hidden" name="id" value="<?= $user['id'] ?>">
-                <button class="text-red-600">Eliminar</button>
+                <button class="text-red-600">🗑️</button>
               </form>
           </td>
         </tr>

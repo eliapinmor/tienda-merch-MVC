@@ -11,7 +11,8 @@ module.exports = {
         title: ['Freckle Face', 'sans-serif'],
       },
       colors: {
-        primary: '#4fc28b'
+        primary: '#4fc28b',
+        secondary: '#A8E6CF'
       }
     },
   },

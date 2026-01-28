@@ -7,8 +7,8 @@
             <input type="hidden" name="id" value="<?= $editProduct['id'] ?? '' ?>">
             <div>
                 <label>Nombre:</label>
-                <input type="text" name="name" class="input" value="<?= htmlspecialchars($editProduct['product_name'] ?? '') ?>"
-                    required>
+                <input type="text" name="name" class="input"
+                    value="<?= htmlspecialchars($editProduct['product_name'] ?? '') ?>" required>
             </div>
             <div>
                 <label>Descripción:</label>
@@ -18,12 +18,14 @@
             <div>
                 <label>Precio:</label>
                 <input type="number" name="price" class="input"
-                    value="<?= htmlspecialchars($editProduct['price'] ?? '') ?>"></div>
-                    <div>
-                        <label>Imagen:</label>
-                        <input type="file" name="images[]" class="input"
-                            value="<?= htmlspecialchars($editProduct['image'] ?? '') ?>" multiple accept="image/*">
-                    </div>
+                    value="<?= htmlspecialchars($editProduct['price'] ?? '') ?>">
+            </div>
+            <div>
+                <label>Imagen:</label>
+                <input type="file" name="images[]" class="input"
+                    value="<?= htmlspecialchars($editProduct['image'] ?? '') ?>" multiple accept="image/*">
+                    <small class="text-gray-500">Max 5MB por imagen. Suba tantas imagenes como necesite.</small>
+            </div>
             <button type="submit" class="btn">Save</button>
         </form>
     </div>
@@ -31,11 +33,12 @@
         <table>
             <thead>
                 <tr>
-                <th class="table-h"> id </th>
-                <th class="table-h"> name </th>
-                <th class="table-h"> precio </th>
-                <th class="table-h"> imagenes </th>
-                <th class="table-h"> acciones </th>
+                    <th class="table-h"> id </th>
+                    <th class="table-h"> name </th>
+                    <th class="table-h"> description </th>
+                    <th class="table-h"> precio </th>
+                    <th class="table-h"> imagenes </th>
+                    <th class="table-h"> acciones </th>
                 </tr>
             </thead>
             <tbody>
@@ -43,8 +46,15 @@
                     <tr class="hover:bg-gray-50 transition-colors">
                         <td class="table-d"><?= htmlspecialchars($product['id']) ?></td>
                         <td class="table-d"><?= htmlspecialchars($product['product_name']) ?></td>
+                        <td class="table-d"><?= htmlspecialchars($product['description']) ?></td>
                         <td class="table-d"><?= htmlspecialchars($product['price']) ?></td>
-                        <td class="table-d"><?= htmlspecialchars($product['image_path'] ?? '') ?></td>
+                        <td class="table-d">
+                            <?php if (!empty($product['image_path'])): ?>
+                                <img src="/<?= htmlspecialchars($product['image_path']) ?>"
+                                    alt="<?= htmlspecialchars($product['product_name']) ?>"
+                                    class="w-10 h-10 object-cover rounded">
+                            <?php endif; ?>
+                        </td>
                         <td class="table-d space-x-2">
                             <a href="/admin/products?edit=<?= $product['id'] ?>" class="text-blue-600">✏️</a>
 
