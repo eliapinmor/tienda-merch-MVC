@@ -9,7 +9,7 @@ require __DIR__ . '/../layout/header.php';
 ?>
 <div class="flex justify-between items-center mb-6">
   <div>
-    <h2>Bienvenido, <?= $_SESSION['user_username'] ?></h2>
+    <h2 class="text-4xl font-bold text-[#333]">Bienvenido, <?= $_SESSION['user_username'] ?></h2>
   </div>
   <div>
     <a href="/logout" class="btn-glass">Cerrar sesión</a>

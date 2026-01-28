@@ -40,7 +40,7 @@
           <th class="table-h">username</th>
           <th class="table-h">email</th>
           <th class="table-h">rol</th>
-          <th class="table-h">acciones</th>
+          <th class="table-h rounded-tr-xl">acciones</th>
         </tr>
       </thead>
       <tbody>

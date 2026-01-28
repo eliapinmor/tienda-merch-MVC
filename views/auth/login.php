@@ -9,7 +9,7 @@ require __DIR__ . '/../layout/header.php';
 ?>
 <div class="flex w-full flex-row">
   <div class="basis-2/3">
-    <img src="/images/login.avif" class="w-full">
+    <img src="/images/login.avif" class="w-full" alt="login-image">
   </div>
   <div class="basis-1/3 m-auto">
     <h1 class="text-4xl font-bold text-center text-gray-800 mb-10">Iniciar sesión</h1>
@@ -31,6 +31,8 @@ require __DIR__ . '/../layout/header.php';
           <div>
             <button type="submit" class="btn">Entrar</button>
           </div>
+          <?php if (isset($error))
+  echo "<p style='color:red'>$error</p>"; ?>
 
           <div class="mt-8">
             <p>¿No tienes cuenta? <strong><a href="/register">Regístrate aquí</a></strong></p>
@@ -42,5 +44,3 @@ require __DIR__ . '/../layout/header.php';
 </div>
 
 <?php require __DIR__ . '/../layout/footer.php'; ?>
-<?php if (isset($error))
-  echo "<p style='color:red'>$error</p>"; ?>

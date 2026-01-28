@@ -42,3 +42,17 @@ INSERT INTO product_images (product_id, image_path, is_main) VALUES
 
 INSERT INTO users (username, email, password_hash, role) VALUES
 ('admin', 'admin@gmail.com', '$2y$10$TvOGt/MzbtjddzUjw5g/.OsR0kQlc7ACiZw8TRHP6xOdCmILufcl2', 'admin');
+
+-- INSERT INTO users (username, email, password, role) VALUES
+-- ('admin', 'admin@urbanmerch.com', '$2y$10$abcdefghijklmnopqrstuv', 'admin'),
+-- ('juanperez', 'juan@gmail.com', '$2y$10$abcdefghijklmnopqrstuv', 'customer'),
+-- ('maria', 'maria@gmail.com', '$2y$10$abcdefghijklmnopqrstuv', 'customer'),
+-- ('carlos', 'carlos@gmail.com', '$2y$10$abcdefghijklmnopqrstuv', 'customer'),
+-- ('ana', 'ana@gmail.com', '$2y$10$abcdefghijklmnopqrstuv', 'customer'),
+-- ('luis', 'luis@gmail.com', '$2y$10$abcdefghijklmnopqrstuv', 'customer'),
+-- ('sophia', 'sophia@gmail.com', '$2y$10$abcdefghijklmnopqrstuv', 'customer'),
+-- ('david', 'david@gmail.com', '$2y$10$abcdefghijklmnopqrstuv', 'customer'),
+-- ('isabella', 'isabella@gmail.com', '$2y$10$abcdefghijklmnopqrstuv', 'customer'),
+-- ('jose', 'jose@gmail.com', '$2y$10$abcdefghijklmnopqrstuv', 'customer'),
+-- ('laura', 'laura@gmail.com', '$2y$10$abcdefghijklmnopqrstuv', 'customer'),
+-- ('miguel', 'miguel@gmail.com', '$2y$10$abcdefghijklmnopqrstuv', 'customer');
