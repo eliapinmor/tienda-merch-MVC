@@ -29,7 +29,7 @@ if (session_status() === PHP_SESSION_NONE) {
         </div>
         <div>
             <?php if (!empty($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
-                <a href="/admin">ADMINSITRACIÓN</a>
+                <a href="/admin">ADMINISTRACIÓN</a>
             <?php else: ?>
                 <a href="/profile">PERFIL</a>
             <?php endif; ?>

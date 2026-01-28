@@ -4,7 +4,7 @@
     <div class="btn-glass p-24">
     <h1 class="text-4xl font-bold text-white">BIENVENIDO A LA TIENDA</h1>
     <div class="bg-red bg-opacity-50 p-6 rounded mt-4 text-center">
-        <a href="/products" class="btn">Ver productos</a>
+        <a href="/products" class="btn font-title text-4xl font-light">Ver productos</a>
     </div></div>
 </div>
 
