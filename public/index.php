@@ -151,13 +151,16 @@ if ($uri === '/admin/products/delete' && $_SERVER['REQUEST_METHOD'] === 'POST') 
     exit;
 }
 
-if( $uri === '/admin/comments') {
+if( $uri === '/admin/reviews') {
     session_start();
     if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
         header("Location: /login");
         exit;
     }
-    require __DIR__ . '/../views/admin/comments.php';
+    require __DIR__ . '/../controllers/ReviewController.php';
+    $controller = new ReviewController();
+    $controller->getAll();
+
     exit;
 }
 
@@ -166,8 +169,16 @@ if( $uri === '/admin/comments') {
 if (preg_match('#^/product/(\d+)/review$#', $uri, $matches) && $_SERVER['REQUEST_METHOD'] === 'POST') {
     require_once __DIR__ . '/../controllers/ReviewController.php';
 
-    $controller = new ReviewsController();
-    $controller->store($matches[1]);
+    $controller = new ReviewController();
+    $controller->create($matches[1]);
+    exit;
+}
+
+if ($uri === '/reviews/create' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once __DIR__ . '/../controllers/ReviewController.php';
+
+    $controller = new ReviewController();
+    $controller->create();
     exit;
 }
 

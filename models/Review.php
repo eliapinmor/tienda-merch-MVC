@@ -1,7 +1,9 @@
 <?php
 
 require_once __DIR__ . '/../config/Database.php';
-class Review {
+
+class Review
+{
     public $id;
     public $user_id;
     public $product_id;
@@ -9,13 +11,9 @@ class Review {
     public $content;
     public $created_at;
 
-    // private $db;
 
-    // public function __construct($db) {
-    //     $this->db = $db;
-    // }
-
-    public function create() {
+    public function create()
+    {
         $pdo = Database::connect();
         $stmt = $pdo->prepare("
             INSERT INTO reviews (user_id, product_id, rating, content)
@@ -30,7 +28,8 @@ class Review {
         return $pdo->lastInsertId();
     }
 
-    public static function findByProduct($product_id) {
+    public static function findByProduct($product_id)
+    {
         $pdo = Database::connect();
         $stmt = $pdo->prepare("
             SELECT c.*, u.username 
@@ -41,5 +40,34 @@ class Review {
         ");
         $stmt->execute([':product_id' => $product_id]);
         return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    //vista admin
+
+public static function getAll()
+{
+    $pdo = Database::connect();
+    $stmt = $pdo->prepare("
+        SELECT 
+            r.id, 
+            r.content, 
+            r.rating, 
+            r.created_at, 
+            u.username, 
+            p.product_name 
+        FROM reviews r
+        JOIN users u ON r.user_id = u.id
+        JOIN products p ON r.product_id = p.id
+        ORDER BY r.created_at DESC
+    ");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_OBJ);
+}
+
+    public static function delete($id)
+    {
+        $pdo = Database::connect();
+        $stmt = $pdo->prepare("DELETE FROM reviews WHERE id = :id");
+        return $stmt->execute([':id' => $id]);
     }
 }
