@@ -26,6 +26,17 @@ CREATE TABLE product_images (
     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
 );
 
+CREATE TABLE reviews (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT NOT NULL,
+    user_id INT NOT NULL,
+    rating INT CHECK (rating >= 1 AND rating <= 5),
+    content TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
 INSERT INTO products (product_name, description, price) VALUES
 ('CD First Album', 'Primer album de estudio de un artista emergente. Cuenta con 15 pistas. Formato MD de Sony.', 20),
 ('Gorra', 'Gorra de la cantante americana Lana del Rey. De algodon, color negro.', 15),

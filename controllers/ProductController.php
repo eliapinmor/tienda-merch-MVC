@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../models/Product.php';
 require_once __DIR__ . '/../models/ProductImage.php';
+require_once __DIR__ . '/../models/Review.php';
 
 class ProductController {
     //tienda publica
@@ -13,6 +14,7 @@ class ProductController {
     public function show($id) {
         $product = Product::findById($id);
         $images = ProductImage::findByProduct($id);
+        $reviews = Review::findByProduct($id);
         require __DIR__ . '/../views/products/show.php';
     }
 

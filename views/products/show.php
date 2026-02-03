@@ -45,32 +45,79 @@
 <hr class="my-6 border-t-2 border-gray-300 w-96 m-auto">
 <div>
     <h1 class="text-4xl font-bold text-[#333] text-center">OPINIONES</h1>
+    <h3 class="text-xl font-bold mt-10">Añadir review</h3>
+
+<?php if (isset($_SESSION['user_id'])): ?>
+<form action="/reviews/create" method="POST" class="mt-4 space-y-4 w-3/5 m-auto">
+
+    <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
+
+    <!-- Rating -->
+    <label class="block">
+        <span class="block mb-1 font-semibold">Puntuación (1-5)</span>
+        <select name="rating" class="border p-2 rounded w-24" required>
+            <option value="1">1 ⭐</option>
+            <option value="2">2 ⭐</option>
+            <option value="3">3 ⭐</option>
+            <option value="4">4 ⭐</option>
+            <option value="5">5 ⭐</option>
+        </select>
+    </label>
+
+    <!-- Content -->
+    <textarea 
+        name="content"
+        class="w-full border p-3 rounded"
+        placeholder="Escribe tu opinión..."
+        required
+    ></textarea>
+
+    <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+        Publicar review
+    </button>
+</form>
+
+<?php else: ?>
+    <p class="text-center text-gray-500 mt-4">
+        Debes <a href="/login" class="text-blue-600 underline">iniciar sesión</a> para dejar una review.
+    </p>
+<?php endif; ?>
+
     <div class="flex flex-col justify-center">
-        <div class="border-2 border-[#ACACAC] rounded-lg w-3/5 m-auto mt-8 p-4">
+        <?php if (!empty($reviews)): ?>
+    <?php foreach ($reviews as $review): ?>
+        <div class="border-2 border-[#D4D4D4] rounded-lg w-3/5 m-auto mt-8 p-4">
+            
             <!-- header review -->
             <div class="flex justify-between items-center mb-4 pb-2">
                 <div class="p4 flex items-center gap-4">
-                    <img src="/images/profile.png" alt="Profile Picture" class="w-10 h-10 rounded-full">
+                    <img src="/images/profile.png" 
+                         alt="Profile Picture" 
+                         class="w-10 h-10 rounded-full">
 
-                    <?php if (isset($_SESSION['user_username'])): ?>
-                        <p><?= $_SESSION['user_username'] ?></p>
-                    <?php endif; ?>
+                    <p><?= htmlspecialchars($review->username) ?></p>
                 </div>
+
                 <div>
-                    <p>17/02/2025</p>
+                    <p><?= date("d/m/Y", strtotime($review->created_at)) ?></p>
                 </div>
             </div>
+
             <!-- contenido review -->
             <div class="text-sm">
-                <p>Me encantó este producto! La calidad es excelente y el diseño es muy atractivo. Lo recomiendo
-                    totalmente a
-                    cualquiera que busque algo único y bien hecho.</p>
+                <p><?= nl2br(htmlspecialchars($review->content)) ?></p>
             </div>
+
         </div>
+    <?php endforeach; ?>
+<?php else: ?>
+    <p class="text-center text-gray-500 mt-6">Aún no hay reseñas para este producto.</p>
+<?php endif; ?>
 
-        <div class="border-2 border-[#ACACAC] rounded-lg w-3/5 m-auto mt-8 p-4">
+
+        <!-- <div class="border-2 border-[#ACACAC] rounded-lg w-3/5 m-auto mt-8 p-4"> -->
             <!-- header review -->
-            <div class="flex justify-between items-center mb-4 pb-2">
+            <!-- <div class="flex justify-between items-center mb-4 pb-2">
                 <div class="p4 flex items-center gap-4">
                     <img src="/images/profile.png" alt="Profile Picture" class="w-10 h-10 rounded-full">
                     <?php if (isset($_SESSION['user_username'])): ?>
@@ -80,12 +127,12 @@
                 <div>
                     <p>17/02/2025</p>
                 </div>
-            </div>
+            </div> -->
             <!-- contenido review -->
-            <div class="text-sm">
+            <!-- <div class="text-sm">
                 <p>El producto es de muy buena calidad y el envío fue rápido. Recomendado.</p>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 

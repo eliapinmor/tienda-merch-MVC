@@ -161,6 +161,15 @@ if( $uri === '/admin/comments') {
     exit;
 }
 
+//reviews
+
+if (preg_match('#^/product/(\d+)/review$#', $uri, $matches) && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once __DIR__ . '/../controllers/ReviewController.php';
+
+    $controller = new ReviewsController();
+    $controller->store($matches[1]);
+    exit;
+}
 
 // 404
 http_response_code(404);
