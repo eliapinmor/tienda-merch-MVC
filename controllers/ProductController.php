@@ -38,6 +38,7 @@ class ProductController
 
     public function saveProduct()
     {
+        $isNew = false;
         $name = $_POST['name'];
         $description = $_POST['description'];
         $price = $_POST['price'];
@@ -48,12 +49,16 @@ class ProductController
         } else {
             $productId = Product::create($name, $description, $price);
             if ($productId) {
-                $this->notificacionN8N($name, $price, $description);
+                $isNew = true;
             }
         }
         if (!empty($_FILES['images']['name'][0])) {
             $this->uploadImages($productId, $_FILES['images']);
         }
+
+        // if ($isNew) {
+        //     $this->notificacionN8N($productId, $name, $price, $description, $_POST['url_img'] ?? '');
+        // }
         header('Location: /admin/products');
     }
 
@@ -99,15 +104,17 @@ class ProductController
         }
     }
 
-    private function notificacionN8N($name, $price, $desc)
+    private function notificacionN8N($id, $name, $price, $desc, $urlImg)
     {
         $url = 'http://mvc_n8n:5678/webhook-test/new-product';
 
         $data = [
             'event' => 'nuevo_merchandising',
             'producto' => $name,
+            'descripcion' => $desc,
             'precio' => $price,
-            'url_admin' => 'http://localhost:8080/admin/products'
+            'url_imagen' => $urlImg,
+            'url_producto' => 'http://localhost:8080/' . $id
         ];
 
         $ch = curl_init($url);
