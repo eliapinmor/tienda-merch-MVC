@@ -13,6 +13,7 @@
                     <th class="table-h"> comentario </th>
                     <th class="table-h"> rating </th>
                     <th class="table-h"> precio </th>
+                    <th class="table-h"> fecha </th>
                     <th class="table-h rounded-tr-xl text-center"> eliminar </th>
                 </tr>
             </thead>
@@ -25,6 +26,7 @@
                         <td class="table-d"><?= htmlspecialchars($review['content']) ?></td>
                         <td class="table-d text-center"><?= htmlspecialchars($review['rating']) ?></td>
                         <td class="table-d"><?= htmlspecialchars($review['price']) ?></td>
+                        <td class="table-d"><?= date("d/m/Y", strtotime($review['created_at'])) ?></td>
          
                         <td class="table-d text-center">
                             <form method="POST" action="/admin/reviews/delete" class="inline">

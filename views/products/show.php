@@ -92,10 +92,10 @@
                         <div class="p4 flex items-center gap-4">
                             <img src="/images/profile.png" alt="Profile Picture" class="w-7 h-7 rounded-full">
 
-                            <p class="font-semibold text-[#33333]"><?= htmlspecialchars($review->username) ?></p>
+                            <p class="font-semibold text-[#33333]"><?= htmlspecialchars($review['username']) ?></p>
                         </div>
                         <div>
-                            <?php foreach (range(1, $review->rating) as $i): ?>
+                            <?php foreach (range(1, $review['rating']) as $i): ?>
                                 <img src="/images/star.png" alt="star" class="w-5 h-5 inline-block">
                             <?php endforeach; ?>
                         </div>
@@ -104,10 +104,10 @@
 
                     <!-- contenido review -->
                     <div class="text-sm">
-                        <p><?= nl2br(htmlspecialchars($review->content)) ?></p>
+                        <p><?= nl2br(htmlspecialchars($review['content'])) ?></p>
                     </div>
                     <div>
-                        <p class="text-[#ACACAC] text-semibold"><?= date("d/m/Y", strtotime($review->created_at)) ?></p>
+                        <p class="text-[#ACACAC] text-semibold"><?= date("d/m/Y", strtotime($review['created_at'])) ?></p>
                     </div>
                 </div>
             <?php endforeach; ?>
