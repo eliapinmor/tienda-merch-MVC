@@ -901,10 +901,6 @@ video {
   width: 6rem;
 }
 
-.w-3\/5 {
-  width: 60%;
-}
-
 .w-32 {
   width: 8rem;
 }
@@ -1094,11 +1090,6 @@ video {
   border-top-width: 2px;
 }
 
-.border-\[\#ACACAC\] {
-  --tw-border-opacity: 1;
-  border-color: rgb(172 172 172 / var(--tw-border-opacity, 1));
-}
-
 .border-\[\#D4D4D4\] {
   --tw-border-opacity: 1;
   border-color: rgb(212 212 212 / var(--tw-border-opacity, 1));
@@ -1187,6 +1178,10 @@ video {
 
 .p-6 {
   padding: 1.5rem;
+}
+
+.p-8 {
+  padding: 2rem;
 }
 
 .px-4 {

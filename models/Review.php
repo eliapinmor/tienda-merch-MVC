@@ -39,7 +39,7 @@ class Review
             ORDER BY created_at DESC
         ");
         $stmt->execute([':product_id' => $product_id]);
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     //vista admin
@@ -54,14 +54,15 @@ public static function getAll()
             r.rating, 
             r.created_at, 
             u.username, 
-            p.product_name 
+            p.product_name ,
+            p.price
         FROM reviews r
         JOIN users u ON r.user_id = u.id
         JOIN products p ON r.product_id = p.id
         ORDER BY r.created_at DESC
     ");
     $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_OBJ);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
     public static function delete($id)

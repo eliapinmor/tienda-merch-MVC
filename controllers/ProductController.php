@@ -4,14 +4,17 @@ require_once __DIR__ . '/../models/Product.php';
 require_once __DIR__ . '/../models/ProductImage.php';
 require_once __DIR__ . '/../models/Review.php';
 
-class ProductController {
+class ProductController
+{
     //tienda publica
-    public function index() {
+    public function index()
+    {
         $products = Product::getAllWithMainImage();
         require __DIR__ . '/../views/products/index.php';
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         $product = Product::findById($id);
         $images = ProductImage::findByProduct($id);
         $reviews = Review::findByProduct($id);
@@ -20,7 +23,8 @@ class ProductController {
 
     //vista admin
 
-    public function getAll() {
+    public function getAll()
+    {
         $products = Product::getAll();
 
         $editProduct = null;
@@ -32,7 +36,8 @@ class ProductController {
         require __DIR__ . '/../views/admin/products.php';
     }
 
-    public function saveProduct() {
+    public function saveProduct()
+    {
         $name = $_POST['name'];
         $description = $_POST['description'];
         $price = $_POST['price'];
@@ -42,51 +47,82 @@ class ProductController {
             Product::update($_POST['id'], $name, $description, $price);
         } else {
             $productId = Product::create($name, $description, $price);
+            if ($productId) {
+                $this->notificacionN8N($name, $price, $description);
+            }
         }
-            if (!empty($_FILES['images']['name'][0])) {
-        $this->uploadImages($productId, $_FILES['images']);
-    }
+        if (!empty($_FILES['images']['name'][0])) {
+            $this->uploadImages($productId, $_FILES['images']);
+        }
         header('Location: /admin/products');
     }
 
-    public function deleteProduct() {
+    public function deleteProduct()
+    {
         Product::delete($_POST['id']);
         header('Location: /admin/products');
     }
 
     private function uploadImages($productId, $files)
-{
-    $basePath = __DIR__ . '/../public/uploads/products/' . $productId . '/';
+    {
+        $basePath = __DIR__ . '/../public/uploads/products/' . $productId . '/';
 
-    if (!is_dir($basePath)) {
-        mkdir($basePath, 0777, true);
-    }
-
-    foreach ($files['tmp_name'] as $index => $tmpName) {
-        if ($files['error'][$index] !== UPLOAD_ERR_OK) {
-            continue;
+        if (!is_dir($basePath)) {
+            mkdir($basePath, 0777, true);
         }
 
-        // VALIDACIONES
-        if ($files['size'][$index] > 5_000_000) continue; // 2MB máx
+        foreach ($files['tmp_name'] as $index => $tmpName) {
+            if ($files['error'][$index] !== UPLOAD_ERR_OK) {
+                continue;
+            }
 
-        $mime = mime_content_type($tmpName);
-        if (!in_array($mime, ['image/jpeg', 'image/png', 'image/webp'])) continue;
+            // VALIDACIONES
+            if ($files['size'][$index] > 5_000_000)
+                continue; // 2MB máx
 
-        $extension = pathinfo($files['name'][$index], PATHINFO_EXTENSION);
-        $filename = uniqid('img_') . '.' . $extension;
+            $mime = mime_content_type($tmpName);
+            if (!in_array($mime, ['image/jpeg', 'image/png', 'image/webp']))
+                continue;
 
-        move_uploaded_file($tmpName, $basePath . $filename);
-        $isMain = ($index === 0) ? 1 : 0;
+            $extension = pathinfo($files['name'][$index], PATHINFO_EXTENSION);
+            $filename = uniqid('img_') . '.' . $extension;
 
-        // Guardar en BD
-        ProductImage::create(
-            $productId,
-            'uploads/products/' . $productId . '/' . $filename,
-            $isMain
-        );
+            move_uploaded_file($tmpName, $basePath . $filename);
+            $isMain = ($index === 0) ? 1 : 0;
+
+            // Guardar en BD
+            ProductImage::create(
+                $productId,
+                'uploads/products/' . $productId . '/' . $filename,
+                $isMain
+            );
+        }
     }
-}
+
+    private function notificacionN8N($name, $price, $desc)
+    {
+        $url = 'http://mvc_n8n:5678/webhook-test/new-product';
+
+        $data = [
+            'event' => 'nuevo_merchandising',
+            'producto' => $name,
+            'precio' => $price,
+            'url_admin' => 'http://localhost:8080/admin/products'
+        ];
+
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Content-Type: application/json',
+            'X-Tienda-Token: secret123' // Seguridad para la RA5
+        ]);
+
+        // Ejecución asíncrona rápida (opcional para no ralentizar la web)
+        curl_exec($ch);
+        curl_close($ch);
+    }
 
 }
 

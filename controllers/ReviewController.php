@@ -27,7 +27,7 @@ class ReviewController
         $review->create();
 
         // Volver a la página del producto
-        header("Location: /product?id=" . $_POST['product_id']);
+        header("Location: /product/" . $_POST['product_id']);
         exit;
     }
 

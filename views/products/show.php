@@ -46,7 +46,7 @@
 <h1 class="text-4xl font-bold text-[#333] text-center">OPINIONES</h1>
 <hr class="my-6 border-t-2 border-gray-300 w-96 m-auto">
 
-<div class="flex gap-8 p-4 m-auto">
+<div class="flex gap-4 p-8 m-auto">
 
     <div class="w-1/3">
         <?php if (isset($_SESSION['user_id'])): ?>
@@ -82,7 +82,7 @@
             </p>
         <?php endif; ?>
     </div>
-    <div class="flex flex-col justify-center">
+    <div class="flex flex-col justify-center w-full">
         <?php if (!empty($reviews)): ?>
             <?php foreach ($reviews as $review): ?>
                 <div class="border-2 border-[#D4D4D4] rounded-lg m-auto mt-8 p-4 w-full">
@@ -114,26 +114,6 @@
         <?php else: ?>
             <p class="text-center text-gray-500 mt-6">Aún no hay reseñas para este producto.</p>
         <?php endif; ?>
-
-
-        <!-- <div class="border-2 border-[#ACACAC] rounded-lg w-3/5 m-auto mt-8 p-4"> -->
-        <!-- header review -->
-        <!-- <div class="flex justify-between items-center mb-4 pb-2">
-                <div class="p4 flex items-center gap-4">
-                    <img src="/images/profile.png" alt="Profile Picture" class="w-10 h-10 rounded-full">
-                    <?php if (isset($_SESSION['user_username'])): ?>
-                        <p><?= $_SESSION['user_username'] ?></p>
-                    <?php endif; ?>
-                </div>
-                <div>
-                    <p>17/02/2025</p>
-                </div>
-            </div> -->
-        <!-- contenido review -->
-        <!-- <div class="text-sm">
-                <p>El producto es de muy buena calidad y el envío fue rápido. Recomendado.</p>
-            </div>
-        </div> -->
     </div>
 </div>
 
