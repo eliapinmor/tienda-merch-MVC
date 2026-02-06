@@ -37,7 +37,7 @@
                 </p>
             </div>
             <div class="btn w-1/2 mt-auto text-center">
-                <button>comprar</button>
+                <a href="/cart/addProduct?product_id=<?= $product['id'] ?>">comprar</a>
             </div>
         </div>
 

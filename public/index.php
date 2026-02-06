@@ -182,6 +182,43 @@ if ($uri === '/reviews/create' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
+//carrito
+if ($uri === '/cart') {
+    require_once __DIR__ . '/../controllers/CartController.php';
+    session_start();
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: /login");
+        exit;
+    }
+    $controller = new CartController();
+    $controller->index();
+    exit;
+}
+
+if ($uri === '/cart/addProduct' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once __DIR__ . '/../controllers/CartController.php';
+    session_start();
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: /login");
+        exit;
+    }
+    $controller = new CartController();
+    $controller->addProduct();
+    exit;
+}
+
+// if ($uri === '/cart/deleteProduct' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+//     require_once __DIR__ . '/../controllers/CartController.php';
+//     session_start();
+//     if (!isset($_SESSION['user_id'])) {
+//         header("Location: /login");
+//         exit;
+//     }
+//     $controller = new CartController();
+//     $controller->clearCart();
+//     exit;
+// }
+
 // 404
 http_response_code(404);
 echo "Página no encontrada";
