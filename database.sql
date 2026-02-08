@@ -30,7 +30,7 @@ CREATE TABLE reviews (
     id INT AUTO_INCREMENT PRIMARY KEY,
     product_id INT NOT NULL,
     user_id INT NOT NULL,
-    rating INT CHECK (rating >= 1 AND rating <= 5),
+    rating INT CHECK (rating >= 0 AND rating <= 5),
     content TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
@@ -42,6 +42,7 @@ CREATE TABLE cart (
     user_id INT NOT NULL,
     product_id INT NOT NULL,
     quantity INT NOT NULL DEFAULT 1,
+    UNIQUE KEY unique_cart_item (user_id, product_id),
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
 );

@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 require_once __DIR__ . '/../controllers/ProductController.php';
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -29,7 +30,6 @@ if (preg_match('#^/product/(\d+)$#', $uri, $matches)) {
 //PROFILE
 if ($uri === '/profile') {
     require_once __DIR__ . '/../controllers/AuthController.php';
-    session_start();
     if (!isset($_SESSION['user_id'])) {
         header("Location: /login");
         exit;
@@ -65,7 +65,6 @@ if ($uri === '/logout') {
 // admin dashboard
 if ($uri === '/admin') {
     require_once __DIR__ . '/../controllers/AuthController.php';
-    session_start();
     if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
         header("Location: /login");
         exit;
@@ -75,7 +74,6 @@ if ($uri === '/admin') {
 }
 
 if ($uri === '/admin/users') {
-    session_start();
     if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
         header("Location: /login");
         exit;
@@ -88,7 +86,6 @@ if ($uri === '/admin/users') {
 }
 
 if ($uri === '/admin/users/saveUser' && $_SERVER['REQUEST_METHOD'] === 'POST') {
-    session_start();
     if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
         header("Location: /login");
         exit;
@@ -101,7 +98,6 @@ if ($uri === '/admin/users/saveUser' && $_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 if ($uri === '/admin/users/delete' && $_SERVER['REQUEST_METHOD'] === 'POST') {
-    session_start();
     if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
         header("Location: /login");
         exit;
@@ -114,7 +110,6 @@ if ($uri === '/admin/users/delete' && $_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 if ($uri === '/admin/products') {
-    session_start();
     if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
         header("Location: /login");
         exit;
@@ -126,7 +121,6 @@ if ($uri === '/admin/products') {
 }
 
 if ($uri === '/admin/products/save' && $_SERVER['REQUEST_METHOD'] === 'POST') {
-    session_start();
     if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
         header("Location: /login");
         exit;
@@ -139,7 +133,6 @@ if ($uri === '/admin/products/save' && $_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 if ($uri === '/admin/products/delete' && $_SERVER['REQUEST_METHOD'] === 'POST') {
-    session_start();
     if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
         header("Location: /login");
         exit;
@@ -152,7 +145,6 @@ if ($uri === '/admin/products/delete' && $_SERVER['REQUEST_METHOD'] === 'POST') 
 }
 
 if( $uri === '/admin/reviews') {
-    session_start();
     if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
         header("Location: /login");
         exit;
@@ -185,11 +177,7 @@ if ($uri === '/reviews/create' && $_SERVER['REQUEST_METHOD'] === 'POST') {
 //carrito
 if ($uri === '/cart') {
     require_once __DIR__ . '/../controllers/CartController.php';
-    session_start();
-    if (!isset($_SESSION['user_id'])) {
-        header("Location: /login");
-        exit;
-    }
+
     $controller = new CartController();
     $controller->index();
     exit;
@@ -197,7 +185,6 @@ if ($uri === '/cart') {
 
 if ($uri === '/cart/addProduct' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     require_once __DIR__ . '/../controllers/CartController.php';
-    session_start();
     if (!isset($_SESSION['user_id'])) {
         header("Location: /login");
         exit;
@@ -207,17 +194,16 @@ if ($uri === '/cart/addProduct' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
-// if ($uri === '/cart/deleteProduct' && $_SERVER['REQUEST_METHOD'] === 'POST') {
-//     require_once __DIR__ . '/../controllers/CartController.php';
-//     session_start();
-//     if (!isset($_SESSION['user_id'])) {
-//         header("Location: /login");
-//         exit;
-//     }
-//     $controller = new CartController();
-//     $controller->clearCart();
-//     exit;
-// }
+if ($uri === '/cart/delete' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once __DIR__ . '/../controllers/CartController.php';
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: /login");
+        exit;
+    }
+    $controller = new CartController();
+    $controller->deleteProduct();
+    exit;
+}
 
 // 404
 http_response_code(404);

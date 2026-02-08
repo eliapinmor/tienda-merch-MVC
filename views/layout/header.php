@@ -12,6 +12,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Freckle+Face&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="/css/tailwind.css" rel="stylesheet">
 </head>
 <?php
@@ -22,17 +23,21 @@ if (session_status() === PHP_SESSION_NONE) {
 
     <nav class="flex flex-row justify-evenly items-center p-4 bg-gray-900 text-white">
         <div>
-            <a href="/products">PRODUCTOS</a>
+            <a href="/products" class="font-bold text-xl">PRODUCTOS</a>
         </div>
         <div>
             <a href="/" class="font-title text-7xl">URBAN MERCH</a>
         </div>
-        <div>
+        <div class="flex gap-4">
+            <div>
+            <a href="/profile"><i class="fa-solid fa-user"></i></a></div>
+            <div>
+            <a href="/cart"><i class="fa-solid fa-cart-shopping"></i></a></div>
             <?php if (!empty($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
-                <a href="/admin">ADMINISTRACIÓN</a>
-            <?php else: ?>
-                <a href="/profile">PERFIL</a>
+                <div><a href="/admin"><i class="fa-solid fa-screwdriver-wrench"></i></a></div>
             <?php endif; ?>
+
+            
         </div>
     </nav>
 

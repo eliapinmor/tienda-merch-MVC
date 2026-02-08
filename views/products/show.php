@@ -1,7 +1,8 @@
 <?php require __DIR__ . '/../layout/header.php'; ?>
+<?php require __DIR__ . '/../layout/modal-login.php'; ?>
 <div class="flex h-full min-h-96 max-w-6xl mx-auto justify-center gap-8 p-4 m-auto mt-32 mb-48 flex-row">
     <!-- Carrusel -->
-    <div class="max-w-xl w-1/2 mx-auto flex justify-center items-center">
+    <div class="max-w-xl w-3/5 mx-auto flex justify-center items-center">
         <div class="relative w-4/5 overflow-hidden rounded-lg shadow-xl shadow-black/30">
             <?php if (empty($images)): ?>
                 <img src="/images/no-image.jpg" class="w-full flex-shrink-0 object-cover h-64">
@@ -27,23 +28,43 @@
         </div>
     </div>
 
-    <div class="w-1/2">
+    <div class="w-2/5">
         <h2 class="text-4xl font-bold"><?= htmlspecialchars($product['product_name']) ?></h2>
-        <p class="font-normal mt-"><?= htmlspecialchars($product['description']) ?></p>
+        <p class="font-normal mt-4"><?= htmlspecialchars($product['description']) ?></p>
+        <p class="font-bold text-2xl mt-4">
+            <?= $product['price'] ?> €
+        </p>
         <div class="flex items-center mt-8 gap-4">
-            <div class="w-1/2 text-3xl">
-                <p class="font-bold">
-                    <?= $product['price'] ?> €
-                </p>
-            </div>
-            <div class="btn w-1/2 mt-auto text-center">
-                <a href="/cart/addProduct?product_id=<?= $product['id'] ?>">comprar</a>
-            </div>
+            <form id="cart-form" method="POST" action="/cart/addProduct" class="flex items-center gap-3 w-full">
+                <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
+
+                <div class="flex items-center border-2 border-gray-200 rounded-xl overflow-hidden bg-white h-12">
+                    <button type="button" id="btn-minus"
+                        class="px-4 py-2 hover:bg-gray-100 transition-colors text-gray-600 font-bold text-xl">-</button>
+
+                    <input type="number" name="quantity" id="quantity-input" value="1" min="1" max="99" readonly
+                        class="w-10 text-center font-bold text-gray-800 focus:outline-none bg-transparent [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
+
+                    <button type="button" id="btn-plus"
+                        class="px-4 py-2 hover:bg-gray-100 transition-colors text-gray-600 font-bold text-xl">+</button>
+                </div>
+
+                <button type="submit"
+                    class="flex-grow h-12 bg-primary text-white px-6 rounded-xl font-bold hover:bg-gray-800 transition-all active:scale-95 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span>Añadir</span>
+                </button>
+            </form>
         </div>
 
     </div>
 </div>
-<h1 class="text-4xl font-bold text-[#333] text-center">OPINIONES</h1>
+<!-- te podría interesar -->
+<h2 class="text-4xl font-bold text-[#333] text-center">TE PUEDE INTERESAR</h2>
+<hr class="my-6 border-t-2 border-gray-300 w-96 m-auto">
+
+<p> lorem ipsum</p>
+<h2 class="text-4xl font-bold text-[#333] text-center">OPINIONES</h2>
 <hr class="my-6 border-t-2 border-gray-300 w-96 m-auto">
 
 <div class="flex gap-4 p-8 m-auto">
@@ -90,9 +111,9 @@
                     <!-- header review -->
                     <div class="flex justify-between items-center mb-4 pb-2">
                         <div class="p4 flex items-center gap-4">
-                            <img src="/images/profile.png" alt="Profile Picture" class="w-7 h-7 rounded-full">
+                            <!-- <img src="/images/profile.png" alt="Profile Picture" class="w-7 h-7 rounded-full"> -->
 
-                            <p class="font-semibold text-[#33333]"><?= htmlspecialchars($review['username']) ?></p>
+                            <p class="font-semibold text-[#33333]">@<?= htmlspecialchars($review['username']) ?></p>
                         </div>
                         <div>
                             <?php foreach (range(1, $review['rating']) as $i): ?>
@@ -120,58 +141,77 @@
 <?php require __DIR__ . '/../layout/footer.php'; ?>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
+    // --- 1. REFERENCIAS AL DOM ---
+    const carousel = document.getElementById('carousel');
+    const stars = document.querySelectorAll("#star-rating img");
+    const ratingValue = document.getElementById("rating-value");
+    const cartForm = document.getElementById('cart-form');
+    const loginModal = document.getElementById('login-modal');
+    const btnMinus = document.getElementById('btn-minus');
+    const btnPlus = document.getElementById('btn-plus');
+    const quantityInput = document.getElementById('quantity-input');
+    const isLoggedIn = <?= isset($_SESSION['user_id']) ? 'true' : 'false' ?>;
 
-        const carousel = document.getElementById('carousel');
-        if (!carousel) return; // seguridad extra
-
+    // --- 2. LÓGICA DEL CARRUSEL ---
+    if (carousel) {
         const images = carousel.children;
         const total = images.length;
         let index = 0;
 
-        document.getElementById('next').addEventListener('click', () => {
+        document.getElementById('next')?.addEventListener('click', () => {
             index = (index + 1) % total;
-            updateCarousel();
-        });
-
-        document.getElementById('prev').addEventListener('click', () => {
-            index = (index - 1 + total) % total;
-            updateCarousel();
-        });
-
-        function updateCarousel() {
             carousel.style.transform = `translateX(-${index * 100}%)`;
-        }
+        });
 
-    });
-
-    document.addEventListener("DOMContentLoaded", () => {
-    const stars = document.querySelectorAll("#star-rating img");
-    const ratingValue = document.getElementById("rating-value");
-
-    // Pinta las estrellas según el valor seleccionado
-    function updateStars(value) {
-        stars.forEach(star => {
-            star.style.opacity = (star.dataset.value <= value) ? "1" : "0.3";
+        document.getElementById('prev')?.addEventListener('click', () => {
+            index = (index - 1 + total) % total;
+            carousel.style.transform = `translateX(-${index * 100}%)`;
         });
     }
 
-    stars.forEach(star => {
-        // Hover (visual)
-        star.addEventListener("mouseover", () => {
-            updateStars(star.dataset.value);
+    // --- 3. LÓGICA DE ESTRELLAS ---
+    if (stars.length > 0) {
+        const updateStars = (val) => {
+            stars.forEach(s => s.style.opacity = (s.dataset.value <= val) ? "1" : "0.3");
+        };
+        stars.forEach(star => {
+            star.addEventListener("mouseover", () => updateStars(star.dataset.value));
+            star.addEventListener("mouseout", () => updateStars(ratingValue.value));
+            star.addEventListener("click", () => {
+                ratingValue.value = star.dataset.value;
+                updateStars(ratingValue.value);
+            });
         });
+    }
 
-        // Salir del área (volver a selección)
-        star.addEventListener("mouseout", () => {
-            updateStars(ratingValue.value);
+    // --- 4. LÓGICA DE CANTIDAD (+ / -) ---
+    if (btnMinus && btnPlus && quantityInput) {
+        btnMinus.addEventListener('click', () => {
+            let val = parseInt(quantityInput.value);
+            if (val > 1) quantityInput.value = val - 1;
         });
+        btnPlus.addEventListener('click', () => {
+            let val = parseInt(quantityInput.value);
+            if (val < 99) quantityInput.value = val + 1;
+        });
+    }
 
-        // Click (selección)
-        star.addEventListener("click", () => {
-            ratingValue.value = star.dataset.value;
-            updateStars(ratingValue.value);
+    // --- 5. GESTIÓN DE ENVÍO Y MODAL ---
+    if (cartForm) {
+        cartForm.addEventListener('submit', (e) => {
+            if (!isLoggedIn) {
+                e.preventDefault();
+                if (loginModal) loginModal.classList.remove('hidden');
+            }
         });
+    }
+
+    // Cerrar modal al hacer clic en el fondo oscuro
+    window.addEventListener('click', (e) => {
+        if (e.target === loginModal) {
+            loginModal.classList.add('hidden');
+        }
     });
 });
 </script>

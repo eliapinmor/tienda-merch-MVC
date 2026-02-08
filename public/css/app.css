@@ -40,5 +40,7 @@
   .title-page{
     @apply bg-secondary text-center text-4xl uppercase font-bold w-1/2 px-6 py-4 rounded-lg m-auto mb-8 text-white;
   }
-
+  .btn-quantity {
+    @apply w-20 text-center border rounded-lg;
+  }
 }

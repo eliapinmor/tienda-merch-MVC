@@ -50,7 +50,6 @@ class AuthController
                 return;
             }
 
-            session_start();
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_username'] = $user['username'];
             $_SESSION['user_email'] = $user['email'];
@@ -67,7 +66,6 @@ class AuthController
     // LOGOUT
     public function logout()
     {
-        session_start();
         session_destroy();
 
         header('Location: /');
