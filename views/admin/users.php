@@ -7,7 +7,7 @@
   <div class="w-1/3 sticky top-6 self-start">
     <!-- formulario -->
     <form method="POST" action="/admin/users/saveUser">
-      <input type="hidden" name="id" value="">
+      <input type="hidden" name="id" value="<?= $editUser['id'] ?? '' ?>">
       <div>
         <label>Username:</label>
         <input type="text" name="username" class="input" required
@@ -25,8 +25,8 @@
       <div>
         <label>Role:</label>
         <select name="role" class="input cursor-pointer">
-          <option value="admin">Admin</option>
           <option value="customer">Customer</option>
+          <option value="admin">Admin</option>
         </select>
       </div>
       <button type="submit" class="btn">Save User</button>
@@ -51,11 +51,11 @@
             <td class="table-d"><?= htmlspecialchars($user['email']) ?></td>
             <td class="table-d"><?= htmlspecialchars($user['role']) ?></td>
             <td class="table-d space-x-2">
-              <a href="/admin/users?edit=<?= $user['id'] ?>" class="text-blue-600">✏️</a>
+              <a href="/admin/users?edit=<?= $user['id'] ?>"><i class="fa-solid fa-pen"></i></a>
 
               <form method="POST" action="/admin/users/delete" class="inline">
                 <input type="hidden" name="id" value="<?= $user['id'] ?>">
-                <button class="text-red-600">🗑️</button>
+                <button class="text-red-600"><i class="fa-solid fa-trash"></i></button>
               </form>
             </td>
           </tr>

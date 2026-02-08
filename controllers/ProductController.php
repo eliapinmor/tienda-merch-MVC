@@ -16,6 +16,11 @@ class ProductController
     public function show($id)
     {
         $product = Product::findById($id);
+        if (!$product) {
+            http_response_code(404);
+            require_once __DIR__ . '/../views/errors/404.php';
+            exit;
+        }
         $images = ProductImage::findByProduct($id);
         $reviews = Review::findByProduct($id);
         require __DIR__ . '/../views/products/show.php';
@@ -28,9 +33,11 @@ class ProductController
         $products = Product::getAll();
 
         $editProduct = null;
+        $productsImages = [];
 
         if (isset($_GET['edit'])) {
             $editProduct = Product::findById($_GET['edit']);
+            $productImages = ProductImage::findByProduct($_GET['edit']);
         }
 
         require __DIR__ . '/../views/admin/products.php';

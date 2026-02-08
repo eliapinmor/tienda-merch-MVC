@@ -10,7 +10,7 @@
 
                 <div id="carousel" class="flex transition-transform duration-500">
                     <?php foreach ($images as $img): ?>
-                        <img src="/<?= htmlspecialchars($img['image_path']) ?>" class="w-full flex-shrink-0 object-cover h-80"
+                        <img src="/<?= htmlspecialchars($img['image_path']) ?>" class="w-full flex-shrink-0 object-cover h-96"
                             alt="<?= htmlspecialchars($product['product_name']) ?>">
                     <?php endforeach; ?>
                 </div>

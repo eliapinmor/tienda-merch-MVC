@@ -29,7 +29,7 @@
                         <td class="table-d text-center">
                             <form method="POST" action="/admin/reviews/delete" class="inline">
                                 <input type="hidden" name="id" value="<?= $review['id'] ?>">
-                                <button class="text-red-600">🗑️</button>
+                                <button class="text-red-600"><i class="fa-solid fa-trash"></i></button>
                             </form>
                         </td>
                     </tr>

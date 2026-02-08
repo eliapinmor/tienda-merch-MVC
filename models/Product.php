@@ -39,7 +39,8 @@ public static function getAll()
         $pdo = Database::connect();
         $stmt = $pdo->prepare("SELECT * FROM products WHERE id = ?");
         $stmt->execute([$id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $product = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $product ?: null;
     }
 
     public static function create($name, $description, $price) {
