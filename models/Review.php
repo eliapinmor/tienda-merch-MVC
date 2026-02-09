@@ -44,10 +44,10 @@ class Review
 
     //vista admin
 
-public static function getAll()
-{
-    $pdo = Database::connect();
-    $stmt = $pdo->prepare("
+    public static function getAll()
+    {
+        $pdo = Database::connect();
+        $stmt = $pdo->prepare("
         SELECT 
             r.id, 
             r.content, 
@@ -61,9 +61,9 @@ public static function getAll()
         JOIN products p ON r.product_id = p.id
         ORDER BY r.created_at DESC
     ");
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     public static function delete($id)
     {

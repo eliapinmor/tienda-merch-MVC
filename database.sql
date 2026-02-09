@@ -15,8 +15,9 @@ CREATE TABLE products (
  id INT AUTO_INCREMENT PRIMARY KEY,
  product_name VARCHAR(150) NOT NULL,
  description TEXT,
- price DECIMAL(10, 2) NOT NULL
-);
+ price DECIMAL(10, 2) NOT NULL,
+ FULLTEXT KEY idx_product_name_description (product_name, description)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE product_images (
     id INT AUTO_INCREMENT PRIMARY KEY,

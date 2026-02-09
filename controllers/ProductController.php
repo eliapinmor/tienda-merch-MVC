@@ -21,9 +21,27 @@ class ProductController
             require_once __DIR__ . '/../views/errors/404.php';
             exit;
         }
+
+        $relatedProducts = Product::getRelatedProducts($id, textForSearch: $product['description']);
+
+        $relatedContext = implode(", ", array_column($relatedProducts, 'product_name'));
+
         $images = ProductImage::findByProduct($id);
         $reviews = Review::findByProduct($id);
-        require __DIR__ . '/../views/products/show.php';
+        // require __DIR__ . '/../views/products/show.php';
+        $this->render('products/show', [
+            'product' => $product,
+            'images' => $images,
+            'reviews' => $reviews,
+            'relatedProducts' => $relatedProducts,
+            'relatedContext' => $relatedContext
+        ]);
+    }   
+
+    protected function render(string $view, array $data = [])
+    {
+        extract($data);
+        include __DIR__ . '/../views/' . $view . '.php';
     }
 
     //vista admin

@@ -62,8 +62,30 @@
 <!-- te podría interesar -->
 <h2 class="text-4xl font-bold text-[#333] text-center">TE PUEDE INTERESAR</h2>
 <hr class="my-6 border-t-2 border-gray-300 w-96 m-auto">
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 p-8">
+    <?php foreach ($relatedProducts as $related): ?>
+        <div class="overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col">
+            <a href="/product/<?= $related['id'] ?>" class="flex-1 flex flex-col">
 
-<p> lorem ipsum</p>
+                <?php if (!empty($related['image_path'])): ?>
+                    <img src="/<?= htmlspecialchars($related['image_path']) ?>"
+                        alt="<?= htmlspecialchars($related['product_name']) ?>" class="w-full h-80 object-cover">
+                <?php else: ?>
+                    <div class="w-full h-48 bg-gray-200 flex items-center justify-center text-gray-500">
+                        <img src="/images/no-image.jpg" alt="No Image" class="w-24 h-24">
+                    </div>
+                <?php endif; ?>
+
+                <div class="p-4 flex-1 flex flex-row justify-between">
+                    <h2 class="text-lg font-semibold text-gray-800 mb-2"><?= htmlspecialchars($related['product_name']) ?>
+                    </h2>
+                    <p class="font-bold text-xl"><?= number_format($related['price'], 2) ?> €</p>
+                </div>
+            </a>
+        </div>
+    <?php endforeach; ?>
+</div>
+
 <h2 class="text-4xl font-bold text-[#333] text-center">OPINIONES</h2>
 <hr class="my-6 border-t-2 border-gray-300 w-96 m-auto">
 
@@ -141,77 +163,77 @@
 <?php require __DIR__ . '/../layout/footer.php'; ?>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-    // --- 1. REFERENCIAS AL DOM ---
-    const carousel = document.getElementById('carousel');
-    const stars = document.querySelectorAll("#star-rating img");
-    const ratingValue = document.getElementById("rating-value");
-    const cartForm = document.getElementById('cart-form');
-    const loginModal = document.getElementById('login-modal');
-    const btnMinus = document.getElementById('btn-minus');
-    const btnPlus = document.getElementById('btn-plus');
-    const quantityInput = document.getElementById('quantity-input');
-    const isLoggedIn = <?= isset($_SESSION['user_id']) ? 'true' : 'false' ?>;
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- 1. REFERENCIAS AL DOM ---
+        const carousel = document.getElementById('carousel');
+        const stars = document.querySelectorAll("#star-rating img");
+        const ratingValue = document.getElementById("rating-value");
+        const cartForm = document.getElementById('cart-form');
+        const loginModal = document.getElementById('login-modal');
+        const btnMinus = document.getElementById('btn-minus');
+        const btnPlus = document.getElementById('btn-plus');
+        const quantityInput = document.getElementById('quantity-input');
+        const isLoggedIn = <?= isset($_SESSION['user_id']) ? 'true' : 'false' ?>;
 
-    // --- 2. LÓGICA DEL CARRUSEL ---
-    if (carousel) {
-        const images = carousel.children;
-        const total = images.length;
-        let index = 0;
+        // --- 2. LÓGICA DEL CARRUSEL ---
+        if (carousel) {
+            const images = carousel.children;
+            const total = images.length;
+            let index = 0;
 
-        document.getElementById('next')?.addEventListener('click', () => {
-            index = (index + 1) % total;
-            carousel.style.transform = `translateX(-${index * 100}%)`;
-        });
-
-        document.getElementById('prev')?.addEventListener('click', () => {
-            index = (index - 1 + total) % total;
-            carousel.style.transform = `translateX(-${index * 100}%)`;
-        });
-    }
-
-    // --- 3. LÓGICA DE ESTRELLAS ---
-    if (stars.length > 0) {
-        const updateStars = (val) => {
-            stars.forEach(s => s.style.opacity = (s.dataset.value <= val) ? "1" : "0.3");
-        };
-        stars.forEach(star => {
-            star.addEventListener("mouseover", () => updateStars(star.dataset.value));
-            star.addEventListener("mouseout", () => updateStars(ratingValue.value));
-            star.addEventListener("click", () => {
-                ratingValue.value = star.dataset.value;
-                updateStars(ratingValue.value);
+            document.getElementById('next')?.addEventListener('click', () => {
+                index = (index + 1) % total;
+                carousel.style.transform = `translateX(-${index * 100}%)`;
             });
-        });
-    }
 
-    // --- 4. LÓGICA DE CANTIDAD (+ / -) ---
-    if (btnMinus && btnPlus && quantityInput) {
-        btnMinus.addEventListener('click', () => {
-            let val = parseInt(quantityInput.value);
-            if (val > 1) quantityInput.value = val - 1;
-        });
-        btnPlus.addEventListener('click', () => {
-            let val = parseInt(quantityInput.value);
-            if (val < 99) quantityInput.value = val + 1;
-        });
-    }
+            document.getElementById('prev')?.addEventListener('click', () => {
+                index = (index - 1 + total) % total;
+                carousel.style.transform = `translateX(-${index * 100}%)`;
+            });
+        }
 
-    // --- 5. GESTIÓN DE ENVÍO Y MODAL ---
-    if (cartForm) {
-        cartForm.addEventListener('submit', (e) => {
-            if (!isLoggedIn) {
-                e.preventDefault();
-                if (loginModal) loginModal.classList.remove('hidden');
+        // --- 3. LÓGICA DE ESTRELLAS ---
+        if (stars.length > 0) {
+            const updateStars = (val) => {
+                stars.forEach(s => s.style.opacity = (s.dataset.value <= val) ? "1" : "0.3");
+            };
+            stars.forEach(star => {
+                star.addEventListener("mouseover", () => updateStars(star.dataset.value));
+                star.addEventListener("mouseout", () => updateStars(ratingValue.value));
+                star.addEventListener("click", () => {
+                    ratingValue.value = star.dataset.value;
+                    updateStars(ratingValue.value);
+                });
+            });
+        }
+
+        // --- 4. LÓGICA DE CANTIDAD (+ / -) ---
+        if (btnMinus && btnPlus && quantityInput) {
+            btnMinus.addEventListener('click', () => {
+                let val = parseInt(quantityInput.value);
+                if (val > 1) quantityInput.value = val - 1;
+            });
+            btnPlus.addEventListener('click', () => {
+                let val = parseInt(quantityInput.value);
+                if (val < 99) quantityInput.value = val + 1;
+            });
+        }
+
+        // --- 5. GESTIÓN DE ENVÍO Y MODAL ---
+        if (cartForm) {
+            cartForm.addEventListener('submit', (e) => {
+                if (!isLoggedIn) {
+                    e.preventDefault();
+                    if (loginModal) loginModal.classList.remove('hidden');
+                }
+            });
+        }
+
+        // Cerrar modal al hacer clic en el fondo oscuro
+        window.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                loginModal.classList.add('hidden');
             }
         });
-    }
-
-    // Cerrar modal al hacer clic en el fondo oscuro
-    window.addEventListener('click', (e) => {
-        if (e.target === loginModal) {
-            loginModal.classList.add('hidden');
-        }
     });
-});
 </script>

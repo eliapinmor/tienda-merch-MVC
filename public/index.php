@@ -156,6 +156,15 @@ if( $uri === '/admin/reviews') {
     exit;
 }
 
+
+if ($uri === '/admin/reviews/delete' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once __DIR__ . '/../controllers/ReviewController.php';
+
+    $controller = new ReviewController();
+    $controller->delete();
+    exit;
+}
+
 //reviews
 
 if (preg_match('#^/product/(\d+)/review$#', $uri, $matches) && $_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -202,6 +211,13 @@ if ($uri === '/cart/delete' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     $controller = new CartController();
     $controller->deleteProduct();
+    exit;
+}
+
+if ($uri === '/rag/ask') {
+    require_once __DIR__ . '/../controllers/RagController.php';
+    $controller = new RagController();
+    $controller->ask();
     exit;
 }
 
