@@ -16,10 +16,10 @@ if (session_status() === PHP_SESSION_NONE) {
     <link href="/css/tailwind.css" rel="stylesheet">
 </head>
 <?php
-    $isHome = ($_SERVER['REQUEST_URI'] === '/' || $_SERVER['REQUEST_URI'] === '');
+$isHome = ($_SERVER['REQUEST_URI'] === '/' || $_SERVER['REQUEST_URI'] === '');
 ?>
 
-<body class="min-h-screen flex flex-col <?= $isHome ? '' : 'bg-gray-50' ?>" >
+<body class="min-h-screen flex flex-col <?= $isHome ? '' : 'bg-gray-50' ?>">
 
     <nav class="flex flex-row justify-evenly items-center p-4 bg-gray-900 text-white">
         <div>
@@ -28,16 +28,16 @@ if (session_status() === PHP_SESSION_NONE) {
         <div>
             <a href="/" class="font-title text-7xl">URBAN MERCH</a>
         </div>
-        <div class="flex gap-4">
+        <div class="flex gap-4 text-xl gap-6">
             <div>
-            <a href="/profile"><i class="fa-solid fa-user"></i></a></div>
+                <a href="/profile"><i class="fa-solid fa-user"></i></a>
+            </div>
             <div>
-            <a href="/cart"><i class="fa-solid fa-cart-shopping"></i></a></div>
+                <a href="/cart"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
             <?php if (!empty($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
                 <div><a href="/admin"><i class="fa-solid fa-screwdriver-wrench"></i></a></div>
             <?php endif; ?>
-
-            
         </div>
     </nav>
 

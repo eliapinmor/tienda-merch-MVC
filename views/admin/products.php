@@ -1,5 +1,7 @@
 <?php $title = "Product Management"; ?>
 <?php require_once __DIR__ . '/../layout/header.php'; ?>
+<?php require_once __DIR__ . '/../layout/modal-delete.php'; ?>
+<script src="/js/admin.js" defer></script>
 <h1 class="title-page">PRODUCTOS</h1>
 <div class="flex gap-8">
     <div class="w-1/3 sticky top-6 self-start">
@@ -80,10 +82,14 @@
                         <td class="table-d space-x-2">
                             <a href="/admin/products?edit=<?= $product['id'] ?>"><i class="fa-solid fa-pen"></i></a>
 
-                            <form method="POST" action="/admin/products/delete" class="inline">
+                            <!-- <form method="POST" action="/admin/products/delete" class="inline">
                                 <input type="hidden" name="id" value="<?= $product['id'] ?>">
                                 <button class="text-red-600"><i class="fa-solid fa-trash"></i></button>
-                            </form>
+                            </form> -->
+                            <button type="button" class="btn-delete text-red-600"
+                                data-id="<?= $product['id'] ?>" data-action="/admin/products/delete">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
                         </td>
                     </tr>
                 <?php endforeach; ?>
