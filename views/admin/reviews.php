@@ -1,10 +1,11 @@
 <?php $title = "Reviews Management"; ?>
 <?php require_once __DIR__ . '/../layout/header.php'; ?>
 <h1 class="title-page">COMENTARIOS</h1>
-<div class="flex gap-8">
 
+<div class="flex gap-8 px-4 md:px-0">
 
-        <table class="w-full border-collapse">
+    <div class="w-full overflow-x-auto">
+        <table class="w-full border-collapse min-w-[800px] md:min-w-full">
             <thead class="table-head">
                 <tr>
                     <th class="table-h  rounded-tl-xl"> id </th>
@@ -36,6 +37,7 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
+    </div>
 
 </div>
 <?php require_once __DIR__ . '/../layout/footer.php'; ?>

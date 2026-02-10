@@ -21,14 +21,17 @@ $isHome = ($_SERVER['REQUEST_URI'] === '/' || $_SERVER['REQUEST_URI'] === '');
 
 <body class="min-h-screen flex flex-col <?= $isHome ? '' : 'bg-gray-50' ?>">
 
-    <nav class="flex flex-row justify-evenly items-center p-4 bg-gray-900 text-white">
-        <div>
-            <a href="/products" class="font-bold text-xl">PRODUCTOS</a>
+    <nav
+        class="flex flex-col md:flex-row justify-between md:justify-evenly items-center p-4 bg-gray-900 text-white gap-4 md:gap-0">
+        <div class="order-2 md:order-1">
+            <a href="/products" class="font-bold text-lg md:text-xl">PRODUCTOS</a>
         </div>
-        <div>
-            <a href="/" class="font-title text-7xl">URBAN MERCH</a>
+
+        <div class="order-1 md:order-2">
+            <a href="/" class="font-title text-4xl md:text-7xl">URBAN MERCH</a>
         </div>
-        <div class="flex gap-4 text-xl gap-6">
+
+        <div class="flex gap-6 text-xl order-3">
             <div>
                 <a href="/profile"><i class="fa-solid fa-user"></i></a>
             </div>
@@ -41,4 +44,4 @@ $isHome = ($_SERVER['REQUEST_URI'] === '/' || $_SERVER['REQUEST_URI'] === '');
         </div>
     </nav>
 
-    <main class="flex-1 w-full <?= $isHome ? '' : 'max-w-7xl mx-auto p-6' ?>">
+    <main class="flex-1 w-full <?= $isHome ? '' : 'max-w-7xl mx-auto p-4 md:p-6' ?>">
