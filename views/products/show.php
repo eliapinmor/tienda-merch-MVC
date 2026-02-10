@@ -69,7 +69,7 @@
 
                 <?php if (!empty($related['image_path'])): ?>
                     <img src="/<?= htmlspecialchars($related['image_path']) ?>"
-                        alt="<?= htmlspecialchars($related['product_name']) ?>" class="w-full h-80 object-cover">
+                        alt="<?= htmlspecialchars($related['product_name']) ?>" class="w-full h-96 object-cover">
                 <?php else: ?>
                     <div class="w-full h-48 bg-gray-200 flex items-center justify-center text-gray-500">
                         <img src="/images/no-image.jpg" alt="No Image" class="w-24 h-24">

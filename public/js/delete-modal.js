@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const deleteModal = document.getElementById('delete-modal');
     const deleteForm = document.getElementById('delete-form');
     const deleteInputId = document.getElementById('delete-id');
+    const deleteInputProductId = document.getElementById('delete-product-id');
     const deleteButtons = document.querySelectorAll('.btn-delete');
 
     deleteButtons.forEach(button => {
@@ -11,6 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // 1. Configuramos el modal con los datos del botón pulsado
             deleteInputId.value = id;
+            if (deleteInputProductId) {
+                deleteInputProductId.value = id;
+            }
             deleteForm.action = action;
 
             // 2. Mostramos el modal quitando la clase 'hidden'

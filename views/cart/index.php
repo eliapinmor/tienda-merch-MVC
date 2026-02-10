@@ -1,7 +1,7 @@
 <?php $title = "Carrito de Compras"; ?>
 <?php require __DIR__ . '/../layout/header.php'; ?>
-
-
+<?php require_once __DIR__ . '/../layout/modal-delete.php'; ?>
+<script src="/js/delete-modal.js" defer></script>
 <h1 class="text-4xl font-bold text-center text-gray-800 mb-10">Carrito de Compras</h1>
 <?php if (!isset($_SESSION['user_id'])): ?>
     <p class="text-center text-gray-600">Debes iniciar sesión para ver tu carrito.</p>
@@ -30,11 +30,15 @@
                                 <td class="table-d"><?= $item['quantity'] ?></td>
                                 <td class="table-d"><?= number_format($item['price'] * $item['quantity'], 2) ?> €</td>
                                 <td class="table-d">
-                                    <form method="POST" action="/cart/delete" class="inline">
+                                    <!-- <form method="POST" action="/cart/delete" class="inline">
                                         <input type="hidden" name="product_id" value="<?= $item['id'] ?>">
                                         <button class="text-red-600 hover:text-red-800 transition"><i
                                                 class="fa-solid fa-trash"></i></button>
-                                    </form>
+                                    </form> -->
+                                    <button type="button" class="btn-delete text-red-600" data-id="<?= $item['id'] ?>"
+                                        data-action="/cart/delete">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

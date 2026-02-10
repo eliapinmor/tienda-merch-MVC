@@ -1,7 +1,7 @@
 <?php $title = "Product Management"; ?>
 <?php require_once __DIR__ . '/../layout/header.php'; ?>
 <?php require_once __DIR__ . '/../layout/modal-delete.php'; ?>
-<script src="/js/admin.js" defer></script>
+<script src="/js/delete-modal.js" defer></script>
 <h1 class="title-page">PRODUCTOS</h1>
 <div class="flex gap-8">
     <div class="w-1/3 sticky top-6 self-start">
@@ -40,7 +40,7 @@
                             <div class="preview-item relative w-24 h-24 border rounded overflow-hidden shadow-sm">
                                 <img src="/<?= htmlspecialchars($img['image_path']) ?>" class="w-full h-full object-cover">
                                 <?php if ($img['is_main']): ?>
-                                    <span class="absolute top-0 right-0 bg-yellow-400 text-[10px] px-1 font-bold">Main</span>
+                                    <span class="absolute top-0 right-0 bg-primary text-white text-[10px] px-1 font-bold">Main</span>
                                 <?php endif; ?>
                             </div>
                         <?php endforeach; ?>

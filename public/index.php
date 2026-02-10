@@ -78,7 +78,6 @@ if ($uri === '/admin/users') {
         header("Location: /login");
         exit;
     }
-    // require __DIR__ . '/../views/admin/users.php';
     require_once __DIR__ . '/../controllers/UserController.php';
     $controller = new UserController();
     $controller->getAll();
@@ -223,4 +222,5 @@ if ($uri === '/rag/ask') {
 
 // 404
 http_response_code(404);
-echo "Página no encontrada";
+require_once __DIR__ . '/../views/errors/404.php';
+exit;

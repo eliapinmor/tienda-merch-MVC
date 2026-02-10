@@ -1,7 +1,7 @@
 <?php $title = "User Management"; ?>
 <?php require_once __DIR__ . '/../layout/header.php'; ?>
 <!-- <div class="bg-blue-500"> -->
-  <h1 class="title-page">GESTIÓN DE USUARIOS</h1>
+  <h1 class="title-page">USUARIOS</h1>
 <!-- </div> -->
 <div class="flex gap-8 items-start">
   <div class="w-1/3 sticky top-6 self-start">

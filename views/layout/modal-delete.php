@@ -6,6 +6,7 @@
             
             <form id="delete-form" method="POST" action="">
                 <input type="hidden" name="id" id="delete-id" value="">
+                <input type="hidden" name="product_id" id="delete-product-id" value="">
                 <div class="flex flex-col gap-3">
                     <button type="submit" class="bg-red-600 text-white py-3 rounded-xl font-bold hover:bg-red-700 transition">Eliminar</button>
                     <button type="button" onclick="document.getElementById('delete-modal').classList.add('hidden')" class="bg-gray-100 text-gray-800 py-3 rounded-xl font-bold hover:bg-gray-200 transition">Cancelar</button>
