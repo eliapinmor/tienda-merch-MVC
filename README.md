@@ -37,13 +37,12 @@
 
 1.  **Clonar el repositorio:**
     ```bash
-    git clone [https://github.com/tu-usuario/urban-merch.git](https://github.com/tu-usuario/urban-merch.git)
+    git clone https://github.com/eliapinmor/tienda-merch-MVC.git
     ```
-2.  **Configurar la Base de Datos:**
-    * Importa el archivo `.sql` incluido en la carpeta `/database` a tu gestor de MySQL.
-    * Configura las credenciales en el archivo de conexión (ej: `config/database.php`).
-3.  **Servidor Local:**
-    * Asegúrate de apuntar el documento raíz a la carpeta pública o configurar tu virtual host.
+2.  **Levantar el Docker:**
+    * Ejecutar: docker compose up -d
+3.  **'Sembrar' la base de datos:**
+    * 
 
 ---
 
